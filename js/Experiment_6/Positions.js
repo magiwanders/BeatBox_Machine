@@ -39,7 +39,8 @@ class Positions {
   }
 
   addLayerOfEquallySpaced(grid, n) {
-
+    grid.push(equallySpaced(n))
+    return grid
   }
 
 
