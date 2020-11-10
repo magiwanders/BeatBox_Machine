@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../js/Experiment_6/Positions.js"></script>
+    <script src="../js/Experiment_6/GridOfDots.js"></script>
+    <script src="../js/Experiment_6/Clock.js"></script>
+    <script src="../js/Experiment_6/View.js"></script>
+    <script src="../js/Experiment_6/Model.js"></script>
+    <script src="../js/Experiment_6/Controller.js"></script>
     <link rel="stylesheet" href="../css/Experiment_6.css">
   </head>
 
   <body>
     <div id = "container">
-      <input type = "number" id = "layers"> Number of layers (min 1 max 5 in this demo, input is not checked so just trust me)
+      <input type = "number" id = "divisions" value="8"> Divisions
       <br>
-      <input type = "number" id = "layer4"> Number of dots in layer 4
+      <button id = "addLayerBtn">Add a layer</button>
       <br>
-      <input type = "number" id = "layer3"> Number of dots in layer 3
-      <br>
-      <input type = "number" id = "layer2"> Number of dots in layer 2
-      <br>
-      <input type = "text" id = "layer1"> Comma separated arbitrary dot positions in layer 1 (in degrees, starting from zero at the top going clockwise)
-      <br>
-      <input type = "number" id = "layer0"> Number of dots in layer 0
-      <br>
-      <button id = "renderButton">Render</button>
+      Layers are indexed from 0 (the innermost)
+      <br><input type = "number" id = "layer" value = "0"> Layer to modify
+      <br><input type = "number" id = "eqN" value="0"><button id = "renderEqN">Render</button> <= number of  equally spaced dots
+      <br> OR
+      <br><input type="text" id="deg"> <button id = "renderDeg">Render</button> <= comma separated positions (in degrees, starting from zero on the top, clockwise)
+      <br><button id="play">Play</button>
     </div>
 
 
-    <div id="container">
+    <div id="clockContainer">
     </div>
 
 
