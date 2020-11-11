@@ -37,7 +37,7 @@ navigator.getUserMedia({
     // microphone -&gt; myPCMProcessingNode -&gt; destination.
     var microphone = audioContext.createMediaStreamSource(stream);
     microphone.connect(analyser);
-    analyser.connect(audioContext.destination);
+    //analyser.connect(audioContext.destination);
     //microphone.start(0);
 }, errorCallback);
 
