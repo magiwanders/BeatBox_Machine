@@ -19,7 +19,7 @@ async function post_to_server(audio) {
   const options = {
     method: 'POST',
     header: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'multipart/form-data'
     },
     body: data
   };

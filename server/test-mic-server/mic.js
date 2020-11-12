@@ -45,9 +45,14 @@ jQuery(document).ready(function () {
                         var url = (window.URL || window.webkitURL)
                             .createObjectURL(blob);
                             console.log(blob)
+
                         //NOW FETCH DATA TO THE SERVER
-                            post_to_server(JSON.stringify(blob))
-                            mywav = blob;
+                        var fd = new FormData();
+                        fd.append('fname', 'test.wav');
+                        fd.append('data', blob);
+
+                        post_to_server(55);
+                        mywav = myRecorder;
                         
 
                         ///.....////
