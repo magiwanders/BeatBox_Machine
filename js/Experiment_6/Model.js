@@ -1,13 +1,7 @@
 class Model {
 
   constructor() {
-    this._clock = new Clock(
-      "clock1",
-      new GridOfDots(1, 8), // These are the default
-      false,
-      false,
-      60
-    )
+    this._clock = new Clock()
   }
 
   get nLayers() {
