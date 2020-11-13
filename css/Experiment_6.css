@@ -4,7 +4,7 @@
   position: relative;
 }
 
-#hand {
+.hand {
   background-color: #000;
   position: absolute;
   transform: translateX(-50%) rotate(0deg);

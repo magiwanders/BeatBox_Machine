@@ -4,26 +4,26 @@ class Controller {
     this.model = new Model()
     this.view = new View(this.model)
 
-    this.model.alive()
-    this.view.alive()
-
     setTimeout(()=> {
 
 
       this.view.render() // Initial rendering.
 
-      // Binding the render function to the renderButton requires that it is binded with the 'this' of the class in which render() is defined, View in this case.
+      // Binding of all the buttons with all the respective functions
+      // All html retrievals happen here
+
       document.getElementById("addLayerBtn").onclick = () => {
-        this.model.addLayer()
+        this.model.clock.stop()
+        this.model.clock.addLayer()
         this.view.render()
       }
 
       document.getElementById("renderEqN").onclick = () => {
-        const divisions = parseInt(document.getElementById("divisions").value, 10)
-        if(divisions != this.model.clock.gridOfDots.divisions) {
-          this.model.clock.gridOfDots = new GridOfDots(1, divisions)
-        }
-        this.model.populateLayer(
+        this.model.clock.stop()
+        this.model.clock.updateDivisions(
+          parseInt(document.getElementById("divisions").value, 10)
+        )
+        this.model.clock.updateDots(
           parseInt(document.getElementById("layer").value, 10),
           parseInt(document.getElementById("eqN").value, 10)
         )
@@ -31,8 +31,28 @@ class Controller {
       }
 
       document.getElementById("play").onclick = () => {
-        this.view.play(document.getElementById("hand"))
+        this.model.clock.play()
+        this.view.render()
       }
+
+      document.getElementById("pause").onclick = () => {
+        this.model.clock.pause()
+        this.view.render()
+      }
+
+      document.getElementById("stop").onclick = () => {
+        this.model.clock.stop()
+        this.view.render()
+      }
+
+      document.getElementById("simpleRender").onclick = () => {
+        this.model.clock.stop()
+        this.model.clock.updateDivisions(
+          parseInt(document.getElementById("divisions").value, 10)
+        )
+        this.view.render()
+      }
+
     }, 100)
 
   }

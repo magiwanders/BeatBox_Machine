@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="../js/Experiment_6/Sound.js"></script>
+    <script src="../js/Experiment_6/Default.js"></script>
     <script src="../js/Experiment_6/GridOfDots.js"></script>
     <script src="../js/Experiment_6/Clock.js"></script>
     <script src="../js/Experiment_6/View.js"></script>
@@ -11,16 +13,16 @@
 
   <body>
     <div id = "container">
-      <input type = "number" id = "divisions" value="8"> Divisions
+      <input type = "number" id = "divisions" value="8"> Divisions <button id = "simpleRender">Render</button>
       <br>
       <button id = "addLayerBtn">Add a layer</button>
       <br>
       Layers are indexed from 0 (the innermost)
       <br><input type = "number" id = "layer" value = "0"> Layer to modify
-      <br><input type = "number" id = "eqN" value="0"><button id = "renderEqN">Render</button> <= number of  equally spaced dots
+      <br><input type = "number" id = "eqN" value="0"><button id = "renderEqN">Apply</button> <= number of  equally spaced dots
       <br> OR
-      <br><input type="text" id="deg"> <button id = "renderDeg">Render</button> <= comma separated positions (in degrees, starting from zero on the top, clockwise)
-      <br><button id="play">Play</button>
+      <br><input type="text" id="deg"> <button id = "renderDeg">Apply</button> <= comma separated positions (in degrees, starting from zero on the top, clockwise)
+      <br><button id="play">Play</button><button id="pause">Pause</button><button id="stop">Stop</button>
     </div>
 
 
