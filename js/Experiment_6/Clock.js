@@ -21,8 +21,29 @@ class Clock {
     this.gridOfDots.startRotating(60/this.tempo*1000)
   }
 
-  stop() {
+  pause() {
+    this.isPlaying = false
     this.gridOfDots.stopRotating()
+  }
+
+  stop() {
+    this.pause()
+    this.gridOfDots.handAngle = 0
+  }
+
+  addLayer() {
+    this.gridOfDots.nLayers += 1
+    this.gridOfDots.addLayer()
+  }
+
+  updateDivisions(divisions) {
+    if(divisions != this.gridOfDots.divisions) {
+      this.gridOfDots = new GridOfDots(1, divisions)
+    }
+  }
+
+  updateDots(layerNumber, nOfEquallySpacedDots) {
+    this.gridOfDots.updateLayer(layerNumber, nOfEquallySpacedDots)
   }
 
   // BUILD RELATED FUNCTIONS

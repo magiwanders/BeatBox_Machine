@@ -32,10 +32,19 @@ class GridOfDots {
     return layer
   }
 
-  updateLayer(layer, n) {
-    const newLayer = this.getLayer(n)
-    this.mapOfLayers.delete(layer)
-    this.mapOfLayers.set(layer, newLayer)
+  updateLayer(layerNumber, nOfDots) {
+    if(this.isAcceptable(nOfDots)){
+      this.mapOfLayers.delete(layerNumber)
+      this.mapOfLayers.set(
+        layerNumber,
+        this.getLayer(nOfDots)
+      )
+    }
+  }
+
+  isAcceptable(n) {
+    return (this.divisions%n == 0) &&
+           (this.divisions>=n)
   }
 
   generateMapOfLayers() {
@@ -59,14 +68,14 @@ class GridOfDots {
   }
 
   stopRotating() {
-    console.log("Stopping");
     clearInterval(this.handMoving)
   }
 
   nextDivision(interval) {
-    console.log("Hey");
     const hand = document.getElementById("hand")
+    console.log(this.step);
     this.handAngle += this.step
+    console.log(this.handAngle);
     hand.style.transform = 'translateX(-50%) rotate('+ this.handAngle +'deg)'
   }
 
@@ -112,6 +121,7 @@ class GridOfDots {
   buildHand() {
     const hand = this.buildGenericHand()
     hand.id = 'hand'
+    hand.style.transform = 'translateX(-50%) rotate('+ this.handAngle +'deg)'
     return hand
   }
 
@@ -205,6 +215,10 @@ class GridOfDots {
     const debug_map = document.createElement('p')
     debug_map.innerHTML = '[GridOfDots] map=' + this.mapOfLayers
     container.appendChild(debug_map)
+
+    const debug_angle = document.createElement('p')
+    debug_angle.innerHTML = '[GridOfDots] handAngle=' + this.handAngle
+    container.appendChild(debug_angle)
 
     return container
   }
