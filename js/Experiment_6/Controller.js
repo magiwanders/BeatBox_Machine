@@ -31,7 +31,8 @@ class Controller {
       }
 
       document.getElementById("play").onclick = () => {
-        this.view.play(document.getElementById("hand"))
+        console.log("play!");
+        this.model.clock.isPlaying = true
       }
     }, 100)
 

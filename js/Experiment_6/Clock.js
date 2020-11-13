@@ -14,9 +14,31 @@ class Clock {
     this.tempo = tempo
   }
 
+  // FUNCTIONALITY RELATED functions
+
+  play() {
+    this.isPlaying = true
+    gridOfDots.startRotating
+    const hand = document.getElementById("hand")
+    const handMoving = setInterval(nextDivision(), 60/tempo*1000)
+  }
+
+  // BUILD RELATED FUNCTIONS
+
   build() {
     const container = document.createElement('div')
 
+    if (Default.DEBUG) container = this.injectDebugData(container)
+
+    container.appendChild(this.gridOfDots.build())
+
+    return container
+  }
+
+
+  // DEBUG only funcions
+
+  injectDebugData() {
     const title = document.createElement('p')
     title.innerHTML = 'CLOCK: ' + this.id
     container.appendChild(title)
@@ -26,17 +48,14 @@ class Clock {
     container.appendChild(isArmedDisplay)
 
     const isPlayingDisplay = document.createElement('p')
-    isPlayingDisplay.innerHTML = '[Clock] isPlayingisPlayingDisplay=' + this.isPlaying
+    isPlayingDisplay.innerHTML = '[Clock] isPlayingisPlaying=' + this.isPlaying
     container.appendChild(isPlayingDisplay)
 
     const tempoDisplay = document.createElement('p')
     tempoDisplay.innerHTML = '[Clock] tempo=' + this.tempo
     container.appendChild(tempoDisplay)
-
-    container.appendChild(this.gridOfDots.build())
-
-    return container
   }
+
 
 
 }
