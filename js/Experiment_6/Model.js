@@ -16,6 +16,8 @@ class Model {
     return this._clock
   }
 
+  // SOME OF THESE ARE SIMPLY TO MOVE INSIDE CLASS CLOCK
+
   addLayer()  {
     const newLayers = this.nLayers + 1
     this.clock.gridOfDots.nLayers = newLayers
@@ -32,6 +34,16 @@ class Model {
   isAcceptable(n) {
     return (this.divisions%n == 0) &&
            (this.divisions>=n)
+  }
+
+  updateDivisions(divisions) {
+    if(divisions != this.clock.gridOfDots.divisions) {
+      this.clock.gridOfDots = new GridOfDots(1, divisions)
+    }
+    this.populateLayer(
+      parseInt(document.getElementById("layer").value, 10),
+      parseInt(document.getElementById("eqN").value, 10)
+    )
   }
 
   alive() {

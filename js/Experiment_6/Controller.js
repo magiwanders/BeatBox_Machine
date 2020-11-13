@@ -20,20 +20,20 @@ class Controller {
 
       document.getElementById("renderEqN").onclick = () => {
         const divisions = parseInt(document.getElementById("divisions").value, 10)
-        if(divisions != this.model.clock.gridOfDots.divisions) {
-          this.model.clock.gridOfDots = new GridOfDots(1, divisions)
-        }
-        this.model.populateLayer(
-          parseInt(document.getElementById("layer").value, 10),
-          parseInt(document.getElementById("eqN").value, 10)
-        )
+        this.model.updateDivisions(divisions)
         this.view.render()
       }
 
       document.getElementById("play").onclick = () => {
         console.log("play!");
-        this.model.clock.isPlaying = true
+        this.model.clock.play()
       }
+
+      document.getElementById("stop").onclick = () => {
+        console.log("stop!");
+        this.model.clock.stop()
+      }
+
     }, 100)
 
   }

@@ -12,6 +12,7 @@ class GridOfDots {
     this.divisions = divisions
     this.step = 360/divisions
     this.mapOfLayers = this.generateMapOfLayers()
+    this.handAngle = 0
   }
 
   // n is number of dots in the layer
@@ -47,6 +48,26 @@ class GridOfDots {
 
   addLayer() {
     this.mapOfLayers.set(this.nLayers-1, this.getLayer())
+  }
+
+
+
+  // MOVING RELATED FUNCTIONS
+
+  startRotating(interval) {
+    this.handMoving = setInterval((interval) => this.nextDivision(), interval)
+  }
+
+  stopRotating() {
+    console.log("Stopping");
+    clearInterval(this.handMoving)
+  }
+
+  nextDivision(interval) {
+    console.log("Hey");
+    const hand = document.getElementById("hand")
+    this.handAngle += this.step
+    hand.style.transform = 'translateX(-50%) rotate('+ this.handAngle +'deg)'
   }
 
 

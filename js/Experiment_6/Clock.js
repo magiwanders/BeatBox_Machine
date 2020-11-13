@@ -18,15 +18,17 @@ class Clock {
 
   play() {
     this.isPlaying = true
-    gridOfDots.startRotating
-    const hand = document.getElementById("hand")
-    const handMoving = setInterval(nextDivision(), 60/tempo*1000)
+    this.gridOfDots.startRotating(60/this.tempo*1000)
+  }
+
+  stop() {
+    this.gridOfDots.stopRotating()
   }
 
   // BUILD RELATED FUNCTIONS
 
   build() {
-    const container = document.createElement('div')
+    var container = document.createElement('div')
 
     if (Default.DEBUG) container = this.injectDebugData(container)
 
@@ -38,7 +40,7 @@ class Clock {
 
   // DEBUG only funcions
 
-  injectDebugData() {
+  injectDebugData(container) {
     const title = document.createElement('p')
     title.innerHTML = 'CLOCK: ' + this.id
     container.appendChild(title)
@@ -54,6 +56,8 @@ class Clock {
     const tempoDisplay = document.createElement('p')
     tempoDisplay.innerHTML = '[Clock] tempo=' + this.tempo
     container.appendChild(tempoDisplay)
+
+    return container
   }
 
 
