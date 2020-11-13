@@ -4,8 +4,8 @@ class GridOfDots {
   // divisions is the minimum step/angle to which to quantize the dots.
 
   // The actual grid is a map of Maps
-  // The first map is nLayer -> mapOfDotsRelativeToThatLayer
-  // The secnd map is angleInDegreesOfStep -> 0 if the step is empty, 1 if there is a dot
+  // The LVL1 map is nLayer -> mapOfDotsRelativeToThatLayer
+  // The LVL2 map is angleInDegreesOfStep -> 0 if the step is empty, 1 if there is a dot
 
   constructor(nLayers = 1, divisions = 8) {
     this.nLayers = nLayers
@@ -13,25 +13,33 @@ class GridOfDots {
     this.step = 360/divisions
     this.mapOfLayers = this.generateMapOfLayers()
     this.handAngle = 0
+    this.sound = new Sound()
   }
 
-  // n is number of dots in the layer
+  static getMyPoorThing() {
+    return this.mapOfLayers.get(0).get(0)
+  }
+
+  // Returns the model representation of a layer with n equally spaced dots.
+  // n=0 returns just an empty layer
+  // The actual data model used is a LVL2 Map<[angleOfDivisions],[1_forDot - 0_forEmpty]>
   getLayer(n=0) {
     var layer = new Map()
-    var skip = this.divisions/n - 1
-    var remaining = 0 // The first dot is always there
-    for(var i=0; i<this.divisions; i++) {
-      if(remaining!=0 || n==0) {
-        layer.set(Math.round(i*this.step), 0)
+    var skip = this.divisions/n - 1 // How many empty divisions between two dots
+    var remaining = 0 // How many divisions remain to be left empty before a new dot
+    for(var i=0; i<this.divisions; i++) { // Cycling divisions
+      if(remaining!=0 || n==0) { // Put a zero either if n=0 or there are still remaining divisions to be left empty
+        layer.set(Math.round(i*this.step), 0) // Non-integer angles are rounded to the nearest int
         remaining--
-      } else {
+      } else { // Only in case n!=0 in the first place, if there are no remaining divisions to be left empty, write 1
         layer.set(Math.round(i*this.step), 1)
-        remaining = skip
+        remaining = skip // remaining divisions to be left empty reset to the number of divisions between two dots
       }
     }
     return layer
   }
 
+  // Replaces an existing LVL2 map relative to a layer with a new one with the required number of equally spaced dots
   updateLayer(layerNumber, nOfDots) {
     if(this.isAcceptable(nOfDots)){
       this.mapOfLayers.delete(layerNumber)
@@ -42,11 +50,14 @@ class GridOfDots {
     }
   }
 
+  // Controls that n, the number of equally spaced dots, fits into the divisions grid.
   isAcceptable(n) {
     return (this.divisions%n == 0) &&
            (this.divisions>=n)
   }
 
+  // This generates the data model of all the levels together (the whole data grid)
+  // Generates an empty LVL1 Map<[layer index, innermost is zero],[LVL2 Map of the layer]>
   generateMapOfLayers() {
     var mapOfLayers = new Map()
     for(var i=0; i<this.nLayers; i++) {
@@ -55,6 +66,7 @@ class GridOfDots {
     return mapOfLayers
   }
 
+  // Adds outermost layer
   addLayer() {
     this.mapOfLayers.set(this.nLayers-1, this.getLayer())
   }
@@ -71,12 +83,18 @@ class GridOfDots {
     clearInterval(this.handMoving)
   }
 
+  // Advances the hand position by one step
+  // TODO: interpolate the positions to obtain a smooth transition
   nextDivision(interval) {
     const hand = document.getElementById("hand")
-    console.log(this.step);
     this.handAngle += this.step
-    console.log(this.handAngle);
+    if(this.handAngle>=360) this.handAngle = this.handAngle-360
     hand.style.transform = 'translateX(-50%) rotate('+ this.handAngle +'deg)'
+
+    for(var i=0;i<this.mapOfLayers.size;i++){
+      var layer = this.mapOfLayers.get(i)
+      layer.get(this.handAngle)==1 ? console.log("Layer", i + ": Note!") : console.log("")
+    }
   }
 
 

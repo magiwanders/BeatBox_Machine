@@ -14,7 +14,7 @@ class Clock {
     this.tempo = tempo
   }
 
-  // FUNCTIONALITY RELATED functions
+  // HAND functions
 
   play() {
     this.isPlaying = true
@@ -31,6 +31,9 @@ class Clock {
     this.gridOfDots.handAngle = 0
   }
 
+
+  // STRUCTURE functions
+
   addLayer() {
     this.gridOfDots.nLayers += 1
     this.gridOfDots.addLayer()
@@ -46,7 +49,8 @@ class Clock {
     this.gridOfDots.updateLayer(layerNumber, nOfEquallySpacedDots)
   }
 
-  // BUILD RELATED FUNCTIONS
+
+  // BUILD functions
 
   build() {
     var container = document.createElement('div')
@@ -59,7 +63,7 @@ class Clock {
   }
 
 
-  // DEBUG only funcions
+  // DEBUG funcions
 
   injectDebugData(container) {
     const title = document.createElement('p')

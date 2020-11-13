@@ -4,15 +4,14 @@ class Controller {
     this.model = new Model()
     this.view = new View(this.model)
 
-    this.model.alive()
-    this.view.alive()
-
     setTimeout(()=> {
 
 
       this.view.render() // Initial rendering.
 
-      // Binding the render function to the renderButton requires that it is binded with the 'this' of the class in which render() is defined, View in this case.
+      // Binding of all the buttons with all the respective functions
+      // All html retrievals happen here
+
       document.getElementById("addLayerBtn").onclick = () => {
         this.model.clock.stop()
         this.model.clock.addLayer()

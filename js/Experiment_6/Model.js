@@ -8,7 +8,4 @@ class Model {
     return this._clock
   }
 
-  alive() {
-    console.log("Model alive!")
-  }
 }
