@@ -3,8 +3,6 @@ canvas = document.querySelector("canvas")
 ctx = canvas.getContext("2d")
 a = c.createAnalyser()
 
-//o.connect(a);
-//o.start();
 var data = new Uint8Array(a.frequencyBinCount)
 
 var typed_array = [];
@@ -20,6 +18,8 @@ p.then(function (_ms) {
     var mss
     mss = c.createMediaStreamSource(ms)
     mss.connect(a)
+    mss.connect(c.destination)
+    
 })
 
 function drawAnalyzer() {
@@ -50,8 +50,9 @@ function startreconding() {
 
 function stoprecording() {
     clearInterval(start)
-
+    stop_timer();
     post_to_server(typed_array)
+
 }
 
 

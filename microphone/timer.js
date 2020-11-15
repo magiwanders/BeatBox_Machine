@@ -21,6 +21,13 @@
 function start_timer() {
     setInterval(get_seconds, 1000)
 }
+
+function stop_timer(){
+    clearInterval(1000)
+
+    seconds = 0
+}
+
 var seconds = 0
 var millsec = 0
 
