@@ -53,6 +53,18 @@ class Controller {
         this.view.render()
       }
 
+      document.getElementById("renderDeg").onclick = () => {
+        this.model.clock.stop()
+        this.model.clock.updateDivisions(
+          parseInt(document.getElementById("divisions").value, 10)
+        )
+        this.model.clock.updateDotsArbitrary(
+          parseInt(document.getElementById("layer").value, 10),
+          document.getElementById("deg").value
+        )
+        this.view.render()
+      }
+
     }, 100)
 
   }
