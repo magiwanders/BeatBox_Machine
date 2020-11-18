@@ -53,7 +53,6 @@ class GridOfDots {
   updateLayerArbitrary(layerNumber, nOfDots) {
     var emptyLayer = this.getLayer()
     for(var i=0; i<nOfDots.length; i++) {
-      console.log(emptyLayer.has(nOfDots[i]), nOfDots[i], emptyLayer)
       if(emptyLayer.has(parseInt(nOfDots[i]))) {
         emptyLayer.set(parseInt(nOfDots[i]), 1)
       }
