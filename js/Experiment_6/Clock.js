@@ -49,6 +49,11 @@ class Clock {
     this.gridOfDots.updateLayer(layerNumber, nOfEquallySpacedDots)
   }
 
+  updateDotsArbitrary(layerNumber, dotsString) {
+    const arrayOfDots = dotsString.split(',')
+    this.gridOfDots.updateLayerArbitrary(layerNumber, arrayOfDots)
+  }
+
 
   // BUILD functions
 

@@ -50,6 +50,20 @@ class GridOfDots {
     }
   }
 
+  updateLayerArbitrary(layerNumber, nOfDots) {
+    var emptyLayer = this.getLayer()
+    for(var i=0; i<nOfDots.length; i++) {
+      console.log(emptyLayer.has(nOfDots[i]), nOfDots[i], emptyLayer)
+      if(emptyLayer.has(parseInt(nOfDots[i]))) {
+        emptyLayer.set(parseInt(nOfDots[i]), 1)
+      }
+    }
+    this.mapOfLayers.set(
+      layerNumber,
+      emptyLayer
+    )
+  }
+
   // Controls that n, the number of equally spaced dots, fits into the divisions grid.
   isAcceptable(n) {
     return (this.divisions%n == 0) &&
@@ -217,6 +231,8 @@ class GridOfDots {
     const title = document.createElement('p')
     title.innerHTML = 'DEBUG from GridOfDots'
     container.appendChild(title)
+
+    //console.table(this.mapOfLayers)
 
     const debug_nLayers = document.createElement('p')
     debug_nLayers.innerHTML = '[GridOfDots] nLayers=' + this.nLayers
