@@ -17,19 +17,24 @@
 }, 1000);*/
 
 //setInterval(get_millseconds, 1)
+var seconds = 0
+var millsec = 0
+var mytimer; 
+
+document.getElementById("seconds").innerHTML = seconds + "s";
 
 function start_timer() {
-    setInterval(get_seconds, 1000)
+    mytimer = setInterval(get_seconds, 1000)
 }
 
 function stop_timer(){
-    clearInterval(1000)
+    clearInterval(mytimer)
 
     seconds = 0
+    document.getElementById("seconds").innerHTML = seconds + "s";
 }
 
-var seconds = 0
-var millsec = 0
+
 
 function get_millseconds() {
     if (millsec == 1000) {
