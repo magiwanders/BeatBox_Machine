@@ -1,4 +1,4 @@
-
+/*TIMER DISPLAY IN THE MAIN PAGE*/
 
 var seconds = 0
 var millsec = 0
@@ -19,8 +19,6 @@ function stop_timer() {
     document.getElementById("millsec").textContent = millsec + "ms";
 }
 
-
-
 function get_millseconds() {
 
     millsec +=50;
@@ -29,12 +27,8 @@ function get_millseconds() {
     }
 
     document.getElementById("millsec").textContent =  seconds + "." + millsec + "ms";
-
-
 }
 
 function get_seconds() {
-
     seconds++
-
 }

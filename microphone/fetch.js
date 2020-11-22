@@ -1,3 +1,6 @@
+/*IMPLEMENTATION OF FETCH FOR 
+POST AND GET REQUEST*/
+
 
 //GET BRING YOUR DATA TO THE WEB
 async function get_from_server() {
