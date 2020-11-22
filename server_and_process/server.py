@@ -31,8 +31,10 @@ class S(BaseHTTPRequestHandler):
         logging.info("POST request,\nPath: %s\nHeaders:\n%s\n",
                 str(self.path), str(self.headers))
 
+        ##PRINT THE LENGTH OF THE DATA FOR DEBUG
         print(content_length)
         
+        ##PASS THE DATA TO SCRIPT PROCESS
         data_process.process(post_data)
 
         '''
