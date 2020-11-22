@@ -17,11 +17,13 @@ g = audioctx.createGain();
 let startbutton = document.getElementById("start-rec");
 let stopbutton = document.getElementById("stop-rec");
 let resumebutton = document.getElementById("resume");
+let playbackbutton = document.getElementById("play-back");
 
 //BUTTONS FUNCTION CONNECTION///
 startbutton.onclick = startreconding;
 stopbutton.onclick = stoprecording;
 resumebutton.onclick = function () { audioctx.resume() }
+playbackbutton.onclick = PlayBack;
 
 //mute the audio from the microphone//
 g.gain.value = 0;
@@ -79,19 +81,20 @@ function RecordAudio(data_rec) {
 }
 
 ///PLAYBACK FUNCTION///
-function PlayBack(data_play) {
-    b = audioctx.createBuffer(1, data_play.length, sampleRate)
+function PlayBack() {
+    b = audioctx.createBuffer(1, AudioData.length, sampleRate)
     d = b.getChannelData(0);
 
-    for (var i = 0; i < data_play.length; i++) {
-        d[i] = data_play[i]
+    for (var i = 0; i < AudioData.length; i++) {
+        d[i] = AudioData[i]
     }
 
     bs = audioctx.createBufferSource();
     bs.buffer = b;
     bs.connect(audioctx.destination);
 
-    return bs
+    bs.start();
+    //return bs
 }
 
 ///STREAMING MICROPHONE SIGNAL///
