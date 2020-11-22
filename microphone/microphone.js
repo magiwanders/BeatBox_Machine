@@ -1,23 +1,29 @@
+
+//AUDIO CONTEXT//
 audioctx = new AudioContext()
+
+//CANVAS FOR RECORDING DRAWING//
 canvas = document.getElementById("current-scope")
 fullrec_canvas = document.getElementById("full-rec")
-
 ctx = canvas.getContext("2d")
 fullrec_ctx = fullrec_canvas.getContext("2d")
 
+
+///AUDIO NODES///
 a = audioctx.createAnalyser();
 g = audioctx.createGain();
 
-
+///BUTTON DEFITIONS///
 let startbutton = document.getElementById("start-rec");
 let stopbutton = document.getElementById("stop-rec");
 let resumebutton = document.getElementById("resume");
 
-
+//BUTTONS FUNCTION CONNECTION///
 startbutton.onclick = startreconding;
 stopbutton.onclick = stoprecording;
 resumebutton.onclick = function () { audioctx.resume() }
 
+//mute the audio from the microphone//
 g.gain.value = 0;
 
 let sampleRate = audioctx.sampleRate;
@@ -36,9 +42,9 @@ let data_draw = new Uint8Array(bufferLen);
 
 let data_draw_full = new Uint8Array(sampleRate * duration);
 
-var ms;
+var ms; //media source
 
-var mss;
+var mss; //media stream source
 
 ///SCRIPT PROCESSOR///
 sp = audioctx.createScriptProcessor(bufferLen, 1, 1)
@@ -67,9 +73,7 @@ g.connect(audioctx.destination);
 function RecordAudio(data_rec) {
     for (var i = 0; i < data_rec.length; i++) {
         if (AudioIndex < AudioData.length) {
-            //console.log('Copio')
             AudioData[AudioIndex++] = data_rec[i];
-
         }
     }
 }
@@ -136,7 +140,7 @@ function draw_fullrec() {
     fullrec_ctx.restore();
 }
 
-
+//START YOUR RECORDING//
 function startreconding() {
 
     AudioData = new Float32Array(sampleRate * duration)
@@ -144,17 +148,11 @@ function startreconding() {
     AudioIndex = 0;
 }
 
-
+//STOP THE RECORDING AND SEND DATA//
 function stoprecording() {
 
     stop_timer();
     draw_fullrec();
     post_to_server(AudioData);
    // get_from_server();
-
 }
-
-
-
-
-
