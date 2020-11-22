@@ -8,6 +8,16 @@ fullrec_ctx = fullrec_canvas.getContext("2d")
 a = audioctx.createAnalyser();
 g = audioctx.createGain();
 
+
+let startbutton = document.getElementById("start-rec");
+let stopbutton = document.getElementById("stop-rec");
+let resumebutton = document.getElementById("resume");
+
+
+startbutton.onclick = startreconding;
+stopbutton.onclick = stoprecording;
+resumebutton.onclick = function () { audioctx.resume() }
+
 g.gain.value = 0;
 
 let sampleRate = audioctx.sampleRate;
@@ -16,11 +26,9 @@ let bufferLen = 4096;
 
 a.fftSize = bufferLen;
 
-let duration = 10; //seconds to record -> dinamically
+let duration = 5; //seconds to record -> dinamically
 
 let AudioData = new Float32Array(sampleRate * duration) //-> dinamically
-
-let DataToSend = new Float32Array(sampleRate * duration)
 
 let AudioIndex = 0; //index to scroll data
 
@@ -31,8 +39,6 @@ let data_draw_full = new Uint8Array(sampleRate * duration);
 var ms;
 
 var mss;
-
-var offset = 0;
 
 ///SCRIPT PROCESSOR///
 sp = audioctx.createScriptProcessor(bufferLen, 1, 1)
@@ -92,9 +98,9 @@ async function MicrophoneConnect() {
     mss.connect(sp);
     mss.connect(a);
 }
-
 MicrophoneConnect();
 
+///DRAWING THE FRAME ANALYZER
 function drawAnalyzer() {
     requestAnimationFrame(drawAnalyzer);
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -104,36 +110,31 @@ function drawAnalyzer() {
     for (var i = 0; i < data_draw.length; i++) {
         ctx.lineTo(i, data_draw[i])
     }
-    if (data_draw.length * offset + 2432 < data_draw_full.length) {
-        data_draw_full.set(data_draw, data_draw.length * offset)
-    }
     ctx.stroke()
-    offset++;
 }
-
 drawAnalyzer();
 
-function draw_fullrec(audiobuf) {
-    var canvasHeight =  fullrec_canvas.height
-    var canvasWidth =  fullrec_canvas.width
-    var lineOpacity = canvasWidth / audiobuf.length  ;      
+///DRAWING THE FULL RECORDING WHEN STOP IS PRESSED
+function draw_fullrec() {
+    var canvasHeight = fullrec_canvas.height
+    var canvasWidth = fullrec_canvas.width
+    var lineOpacity = canvasWidth / AudioData.length;
     fullrec_ctx.save();
     fullrec_ctx.fillStyle = '#f5f5dc';
-    fullrec_ctx.fillRect(0,0,canvasWidth,canvasHeight );
+    fullrec_ctx.fillRect(0, 0, canvasWidth, canvasHeight);
     fullrec_ctx.strokeStyle = 'black';
-    fullrec_ctx.translate(0,canvasHeight / 2);
+    fullrec_ctx.translate(0, canvasHeight / 2);
     fullrec_ctx.globalAlpha = 0.5; // lineOpacity ;
-    for (var i=0; i<  audiobuf.length; i++) {
-        // on which line do we get ?
-        var x = Math.floor ( canvasWidth * i / audiobuf.length ) ;
-        var y = audiobuf[i] * canvasHeight / 2 ;
+    for (var i = 0; i < AudioData.length; i++) {
+        var x = Math.floor(canvasWidth * i / AudioData.length);
+        var y = AudioData[i] * canvasHeight / 2;
         fullrec_ctx.beginPath();
-        fullrec_ctx.moveTo( x  , 0 );
-        fullrec_ctx.lineTo( x+1, y );
+        fullrec_ctx.moveTo(x, 0);
+        fullrec_ctx.lineTo(x + 1, y);
         fullrec_ctx.stroke();
     }
     fullrec_ctx.restore();
- }
+}
 
 
 function startreconding() {
@@ -141,33 +142,19 @@ function startreconding() {
     AudioData = new Float32Array(sampleRate * duration)
     start_timer();
     AudioIndex = 0;
-    offset = 0;
-
 }
 
 
 function stoprecording() {
 
     stop_timer();
-    draw_fullrec(AudioData);
-    DataToSend.set(AudioData)
-    //post_to_server(DataToSend);
-
+    draw_fullrec();
+    post_to_server(AudioData);
+   // get_from_server();
 
 }
 
 
 
-//setInterval(drawAnalyzer,100)
 
-
-let startbutton = document.getElementById("start-rec");
-let stopbutton = document.getElementById("stop-rec");
-let resumebutton = document.getElementById("resume");
-//console.log(data);
-startbutton.onclick = startreconding;
-stopbutton.onclick = stoprecording;
-resumebutton.onclick = function () { audioctx.resume() }
-
-//document.querySelector("button").onclick = function(){c.resume()}
 

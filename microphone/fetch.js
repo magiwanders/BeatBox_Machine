@@ -1,14 +1,13 @@
 
 //GET BRING YOUR DATA TO THE WEB
-/*async function get() {
+async function get_from_server() {
 
-  const response = await fetch('your_url');
-  const blob = await response.blob(response);
+  const response = await fetch('http://127.0.0.1:8080');
+  const data = await response.json()
 
+  console.log(data);
+ 
 }
-*/
-
-
 
 
 //POST SEND YOUR DATA TO THE SERVER
