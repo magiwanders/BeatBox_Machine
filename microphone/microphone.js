@@ -127,7 +127,6 @@ drawAnalyzer();
 function draw_fullrec() {
     var canvasHeight = fullrec_canvas.height
     var canvasWidth = fullrec_canvas.width
-    var lineOpacity = canvasWidth / AudioData.length;
     fullrec_ctx.save();
     fullrec_ctx.fillStyle = '#f5f5dc';
     fullrec_ctx.fillRect(0, 0, canvasWidth, canvasHeight);
