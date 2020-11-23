@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="current-scope" width=500 height=260 style="
+            background-color: #f5f5dc;
+            border: 3px solid;">
+            </canvas>
+
+    <canvas id="full-rec" width=500 height=260 style="
+            background-color: beige;
+            border: 3px solid;">
+            </canvas>
+
+    <button id="start-rec">START</button>
+    <button id="stop-rec">STOP</button>
+    <button id="play-back">PLAYBACK</button>
+    <button id="resume">RESUME</button>
+    <p id="millsec"></p>
+    <p id="seconds"></p>
+
+    <script src="microphone.js"></script>
+    <script src="fetch.js"></script>
+    <script src="timer.js"></script>
+
+</body>
+
+</html>
