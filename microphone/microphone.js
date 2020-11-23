@@ -158,5 +158,5 @@ function stoprecording() {
     stop_timer();
     draw_fullrec();
     post_to_server(AudioData);
-   // get_from_server();
+    get_from_server();
 }

@@ -7,14 +7,13 @@ Usage::
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import logging
 
-from multiprocessing import Process, Pipe
-
 import start_here
 
 import data_process
 
 
 class S(BaseHTTPRequestHandler):
+
     def _set_response(self):
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
@@ -24,6 +23,8 @@ class S(BaseHTTPRequestHandler):
         logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
         self._set_response()
         self.wfile.write("GET request for {}".format(self.path).encode('utf-8'))
+        ##self.wfile.write('15'.encode('utf-8'))
+        
         
     def do_POST(self):
         content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
