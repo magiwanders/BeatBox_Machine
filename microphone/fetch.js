@@ -21,9 +21,12 @@ async function post_to_server(audio) {
   const options = {
     method: 'POST',
     header: {
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'application/json'
     },
     body: data
   };
   const post = await fetch('http://127.0.0.1:8080', options);
+
+  const json = awint post.json()
+  console.log(post);
 }

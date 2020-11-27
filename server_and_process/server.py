@@ -16,7 +16,8 @@ class S(BaseHTTPRequestHandler):
 
     def _set_response(self):
         self.send_response(200)
-        self.send_header('Content-type', 'text/html')
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header('Content-type', 'application/json')
         self.end_headers()
 
     def do_GET(self):
@@ -44,6 +45,9 @@ class S(BaseHTTPRequestHandler):
         '''
         self._set_response()
         self.wfile.write("POST request for {}".format(self.path).encode('utf-8'))
+        
+        
+
 
 
 
