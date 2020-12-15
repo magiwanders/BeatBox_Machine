@@ -8,7 +8,7 @@ async function get_from_server() {
   const response = await fetch('http://127.0.0.1:8080');
   const data = await response.json()
 
-  console.log(data);
+  console.log(response);
  
 }
 
@@ -21,16 +21,13 @@ async function post_to_server(audio) {
   const options = {
     method: 'POST',
     header: {
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'application/json'
     },
     body: data
   };
   const post = await fetch('http://127.0.0.1:8080', options);
-<<<<<<< Updated upstream
-=======
 
   const json = await post.json();
 
   console.log(post);
->>>>>>> Stashed changes
 }

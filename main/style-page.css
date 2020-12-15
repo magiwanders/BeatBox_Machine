@@ -1,0 +1,174 @@
+#root {
+    margin: 0 auto;
+    height: 1000px;
+    width: 1000px;
+    background-color: lightslategrey;
+}
+
+#controllers {
+    height: 300px;
+    width: 1000px;
+    position: relative;
+}
+
+#rythmyc-view {
+    background-color: aqua;
+    height: 800px;
+    width: 2000px;
+    position: relative;
+}
+
+#section {
+    display: inline-block;
+    position: relative;
+    width: 300px;
+    height: 700px;
+    border: 2px solid black;
+}
+
+#selector {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-left: 20px;
+    border: 5px solid black;
+}
+
+#tempo-info {
+    background-color: blue;
+    width: 300px;
+    height: 70px;
+    position: absolute;
+    left: 700px;
+    top: 25px
+}
+
+.top-button-container {
+    position: relative;
+    display: inline-block;
+    width: 275px;
+    height: 70px;
+    top: 25px;
+    left: 300px
+}
+
+#play {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 30px solid green;
+}
+
+#stop {
+    position: relative;
+    background-color: red;
+    display: inline-block;
+    margin-top: 20px;
+    margin-right: 20px;
+    height: 40px;
+    width: 40px;
+}
+
+#loop {
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-top: 20px;
+    margin-right: 20px;
+    border: 5px solid #0074d9;
+    border-radius: 75%;
+    border-right-color: transparent;
+}
+
+#rec {
+    position: relative;
+    background-color: red;
+    display: inline-block;
+    margin-right: 20px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.clock {
+    background-color: white;
+    border-radius: 50%;
+    position: relative;
+}
+
+.hand {
+    background-color: #000;
+    position: absolute;
+    transform: translateX(-50%) rotate(0deg);
+    transform-origin: bottom;
+}
+
+.dot {
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.add-clock {
+    background-color: teal;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+#canvasCont {
+    position: relative;
+    width: 500px;
+    height: 150px;
+    left: 400px;
+    top: -150px;
+}
+
+#selectorContainer {
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+#current-scope {
+    position: relative;
+    background-color: white;
+    border: 3px solid black;
+    width: 230px;
+    height: 140px;
+}
+
+#full-rec {
+    background-color: blanchedalmond;
+    border: 3px solid black;
+    width: 230px;
+    height: 140px;
+    position: relative;
+    left: 5px;
+}
+
+#addclockcanvas {
+    position: relative;
+    margin: 0 auto;
+    top: 50px;
+    display: inline-block;
+    margin-top: 100px;
+}
+
+#addsection {
+    top: 50%;
+    position: absolute;
+    display: inline-block;
+}
+
+#waitreccanvas {
+    position: absolute;
+}

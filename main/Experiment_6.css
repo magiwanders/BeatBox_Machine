@@ -1,0 +1,19 @@
+.clock {
+    background-color: white;
+    border-radius: 50%;
+    position: relative;
+}
+
+.hand {
+    background-color: #000;
+    position: absolute;
+    transform: translateX(-50%) rotate(0deg);
+    transform-origin: bottom;
+}
+
+.dot {
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+}

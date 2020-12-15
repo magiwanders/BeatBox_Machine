@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< Updated upstream
   <head>
+=======
+
+<head>
+    <script src="../js/Experiment_6/Sound.js"></script>
+    <script src="../js/Experiment_6/Default.js"></script>
+>>>>>>> Stashed changes
     <script src="../js/Experiment_6/GridOfDots.js"></script>
     <script src="../js/Experiment_6/Clock.js"></script>
     <script src="../js/Experiment_6/View.js"></script>
     <script src="../js/Experiment_6/Model.js"></script>
     <script src="../js/Experiment_6/Controller.js"></script>
-    <link rel="stylesheet" href="../css/Experiment_6.css">
-  </head>
+    <link rel="stylesheet" href="Experiment_6.css">
+</head>
 
+<<<<<<< Updated upstream
   <body>
     <div id = "container">
       <input type = "number" id = "divisions" value="8"> Divisions
@@ -21,6 +29,19 @@
       <br> OR
       <br><input type="text" id="deg"> <button id = "renderDeg">Render</button> <= comma separated positions (in degrees, starting from zero on the top, clockwise)
       <br><button id="play">Play</button>
+=======
+<body>
+    <div id="container">
+        <input type="number" id="divisions" value="8"> Divisions <button id="simpleRender">Render</button>
+        <br>
+        <button id="addLayerBtn">Add a layer</button>
+        <br> Layers are indexed from 0 (the innermost)
+        <br><input type="number" id="layer" value="0"> Layer to modify
+        <br><input type="number" id="eqN" value="0"><button id="renderEqN">Apply</button>
+        <=n umber of equally spaced dots <br> OR
+            <br><input type="text" id="deg"> <button id="renderDeg">Apply</button>
+            <=c omma separated positions (in degrees, starting from zero on the top, clockwise. The angle must be exact.) <br><button id="play">Play</button><button id="pause">Pause</button><button id="stop">Stop</button>
+>>>>>>> Stashed changes
     </div>
 
 
@@ -28,5 +49,6 @@
     </div>
 
 
-  </body>
+</body>
+
 </html>
