@@ -20,7 +20,7 @@ class AddClock {
 
     // BUILD functions
 
-    build() {
+    build(canvasid) {
         var addclkcontainer = document.createElement('div')
         addclkcontainer.setAttribute("id", "addclkbutton")
 
@@ -43,6 +43,7 @@ class AddClock {
         addclkctx.lineTo(170, 50)
         addclkctx.lineWidth = 5;
         addclkctx.stroke();
+
         addclkcontainer.appendChild(addclkcanvas)
         return addclkcontainer
     }

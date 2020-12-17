@@ -60,6 +60,7 @@ class Controller {
             var rythmyc = document.getElementById("rythmyc-view");
             var addsectionbtn = rythmyc.children[0];
             addsectionbtn.onclick = () => {
+
                 this.view.render();
                 if (document.getElementById("waitrec")) {
                     document.getElementById("waitrec").remove();

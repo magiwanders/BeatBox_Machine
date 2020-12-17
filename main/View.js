@@ -39,19 +39,25 @@ class View {
         //this.model.addclock.draw();
         var addclkbtn = this.model.addclock.build()
 
+        this.model.addwaitrec.draw();
         var addwait = this.model.addwaitrec.draw();
 
         addclkbtn.onclick = function() {
 
-            section.prepend(addwait);
-            startreconding();
+            if (document.getElementById("waitrec")) {
+                document.getElementById("waitrec").remove();
+            }
+
+            if (!document.getElementById("waitrec")) {
+                section.prepend(addwait);
+                //startAnimate();
+                startreconding();
+            }
 
             addwait.onclick = function() {
                 console.log("ciao")
             }
         }
-
-        //this.model.addwaitrec.startAnimate();
         section.prepend(addclkbtn);
         rythmyc.prepend(section);
     }
