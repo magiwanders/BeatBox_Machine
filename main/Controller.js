@@ -64,6 +64,7 @@ class Controller {
                 this.view.render();
                 if (document.getElementById("waitrec")) {
                     document.getElementById("waitrec").remove();
+                    cancelAnimationFrame(anim);
                 }
                 this.view.updatesection();
             }
