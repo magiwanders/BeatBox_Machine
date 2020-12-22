@@ -173,3 +173,8 @@
 #waitreccanvas {
     position: absolute;
 }
+
+#addsectioncanvas {
+    position: absolute;
+    display: inline-block;
+}

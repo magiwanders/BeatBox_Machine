@@ -1,9 +1,10 @@
 class WaitRec {
 
-    constructor(id = 'waitrec1', rad = 40) {
+    constructor(id = 'waitrec1', rad = 40, anim = null) {
 
         this.id = id
         this.rad = rad;
+        this.anim = anim
     }
 
     // BUILD functions
@@ -62,10 +63,18 @@ class WaitRec {
     }
 
     startAnimation() {
-        requestAnimationFrame(this.startAnimation.bind(this));
-        var waitreccanvas = document.getElementById("waitreccanvas")
-        var waitrecctx = waitreccanvas.getContext('2d');
-        waitrecctx.clearRect(0, 0, waitreccanvas.width, waitreccanvas.height);
-        this.update();
+        if (document.getElementById("waitrec")) {
+            this.anim = requestAnimationFrame(this.startAnimation.bind(this));
+            var waitreccanvas = document.getElementById("waitreccanvas")
+            var waitrecctx = waitreccanvas.getContext('2d');
+            waitrecctx.clearRect(0, 0, waitreccanvas.width, waitreccanvas.height);
+            this.update();
+        }
     }
+
+    stopAnimation() {
+        cancelAnimationFrame(this.anim)
+    }
+
+
 }

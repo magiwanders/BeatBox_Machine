@@ -25,8 +25,8 @@ class View {
     firstrender() {
         console.log("Rendering...")
         const rythmyc = document.getElementById("rythmyc-view");
-        this.model.addsection.draw()
-        var addsectionbtn = this.model.addsection.build()
+
+        var addsectionbtn = this.model.addbutton.build("addsection", "addsectioncanvas")
         rythmyc.prepend(addsectionbtn)
 
         //this.model.addclock.startAnimate();
@@ -37,7 +37,7 @@ class View {
         var rythmyc = document.getElementById("rythmyc-view")
         var section = this.model.section.build();
         //this.model.addclock.draw();
-        var addclkbtn = this.model.addclock.build()
+        var addclkbtn = this.model.addbutton.build("addclkbutton", "addclockcanvas")
 
         //this.model.addwaitrec.draw();
         var addwait = this.model.addwaitrec.build();
@@ -50,8 +50,10 @@ class View {
                 }
 
                 if (!document.getElementById("waitrec")) {
+                    discardrecording()
                     section.prepend(addwait);
-                    var anim = addwaitrec.startAnimation();
+                    addwaitrec.stopAnimation()
+                    addwaitrec.startAnimation();
                     startreconding();
                 }
 

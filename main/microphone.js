@@ -154,9 +154,14 @@ function startreconding() {
 
 //STOP THE RECORDING AND SEND DATA//
 function stoprecording() {
-
     stop_timer();
     draw_fullrec();
     post_to_server(AudioData);
     //get_from_server();
+}
+
+//DISCARD THE CURRENT RECORDING
+function discardrecording() {
+    stop_timer();
+    AudioData = new Float32Array(sampleRate * duration)
 }

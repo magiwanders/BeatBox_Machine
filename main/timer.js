@@ -4,6 +4,8 @@ var seconds = 0
 var millsec = 0
 var mytimer;
 
+var timerseconds;
+var timermillsec;
 
 function start_timer() {
     timerseconds = setInterval(get_seconds, 1000)
