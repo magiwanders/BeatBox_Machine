@@ -7,24 +7,25 @@ Usage::
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import logging
 
-from multiprocessing import Process, Pipe
-
 import start_here
 
 import data_process
 import json
 
-
 class S(BaseHTTPRequestHandler):
+
     def _set_response(self):
         self.send_response(200)
-        self.send_header('Content-type', 'text/html')
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header('Content-type', 'application/json')
         self.end_headers()
 
     def do_GET(self):
         logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
         self._set_response()
         self.wfile.write("GET request for {}".format(self.path).encode('utf-8'))
+        ##self.wfile.write('15'.encode('utf-8'))
+        
         
     def do_POST(self):
         content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
@@ -36,23 +37,22 @@ class S(BaseHTTPRequestHandler):
         print(content_length)
         
         ##PASS THE DATA TO SCRIPT PROCESS
-        #data_process.process(post_data)
-
+        data_to_return = data_process.process(post_data)
 
         '''
         logging.info("POST request,\nPath: %s\nHeaders:\n%s\n\nBody:\n%s\n",
                 str(self.path), str(self.headers), post_data.decode('utf-8'))
         '''
-        data_to_send = {
-            "gatto":"miao",
-            "cane":"bau"
-        }
-
-        data_to_send = json.dumps(data_to_send)
-
         self._set_response()
-        self.wfile.write(data_to_send)
+
+
+        json_string = json.dumps(data_to_return)
+        self.wfile.write(json_string.encode(encoding='utf_8'))
+
         #self.wfile.write("POST request for {}".format(self.path).encode('utf-8'))
+        
+        
+
 
 
 

@@ -6,6 +6,11 @@ import librosa
 import matplotlib.pyplot as plt
 import novelty
 
+data_to_return = {
+    "Mapping": [],
+    "Sounds Type": [] 
+}
+
 def process(data):
 
     
@@ -30,5 +35,9 @@ def process(data):
     plt.plot(feature_time_axis, X_nov)
     plt.show()
     ##SAVE THE RECORING, JUST FOR DEBUG
+
+    data_to_return["Mapping"].append(55)
+    data_to_return["Sounds Type"].append(444)
+    return data_to_return
    
 
