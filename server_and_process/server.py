@@ -47,16 +47,8 @@ class S(BaseHTTPRequestHandler):
 
 
         json_string = json.dumps(data_to_return)
-        self.wfile.write(json_string.encode(encoding='utf_8'))
-
-        #self.wfile.write("POST request for {}".format(self.path).encode('utf-8'))
+        self.wfile.write(json_string.encode(encoding='utf_8'))        
         
-        
-
-
-
-
-
 def run(server_class=HTTPServer, handler_class=S,port=8080):
     logging.basicConfig(level=logging.INFO)
     server_address = ('', port)
