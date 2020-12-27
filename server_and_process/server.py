@@ -12,6 +12,7 @@ from multiprocessing import Process, Pipe
 import start_here
 
 import data_process
+import json
 
 
 class S(BaseHTTPRequestHandler):
@@ -35,14 +36,23 @@ class S(BaseHTTPRequestHandler):
         print(content_length)
         
         ##PASS THE DATA TO SCRIPT PROCESS
-        data_process.process(post_data)
+        #data_process.process(post_data)
+
 
         '''
         logging.info("POST request,\nPath: %s\nHeaders:\n%s\n\nBody:\n%s\n",
                 str(self.path), str(self.headers), post_data.decode('utf-8'))
         '''
+        data_to_send = {
+            "gatto":"miao",
+            "cane":"bau"
+        }
+
+        data_to_send = json.dumps(data_to_send)
+
         self._set_response()
-        self.wfile.write("POST request for {}".format(self.path).encode('utf-8'))
+        self.wfile.write(data_to_send)
+        #self.wfile.write("POST request for {}".format(self.path).encode('utf-8'))
 
 
 
