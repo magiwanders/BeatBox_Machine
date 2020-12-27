@@ -21,17 +21,17 @@ class AddButton {
         var addctx = addcanvas.getContext('2d');
 
         addctx.beginPath();
-        addctx.arc(150, 50, this.rad, 0, 2 * Math.PI);
+        addctx.arc(150, 30, this.rad, 0, 2 * Math.PI);
         addctx.lineWidth = 5;
         addctx.stroke();
         addctx.beginPath();
-        addctx.lineTo(150, 35)
-        addctx.lineTo(150, 65)
+        addctx.lineTo(150, 15)
+        addctx.lineTo(150, 45)
         addctx.lineWidth = 5;
         addctx.stroke();
         addctx.beginPath();
-        addctx.lineTo(135, 50)
-        addctx.lineTo(165, 50)
+        addctx.lineTo(135, 30)
+        addctx.lineTo(165, 30)
         addctx.lineWidth = 5;
         addctx.stroke();
         addcontainer.appendChild(addcanvas);

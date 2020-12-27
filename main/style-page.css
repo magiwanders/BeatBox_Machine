@@ -1,28 +1,32 @@
+body {
+    margin: 0;
+}
+
 #root {
     margin: 0 auto;
-    height: 1000px;
-    width: 1000px;
     background-color: rgb(80, 80, 80);
+    padding: 0%;
 }
 
 #controllers {
     height: 300px;
-    width: 1000px;
+    width: 100%;
     position: relative;
+    background-color: rgb(211, 211, 211);
 }
 
 #rythmyc-view {
-    background-color: rgb(50, 50, 50);
-    height: 800px;
-    width: 1000px;
-    position: relative;
+    background-color: rgb(114, 114, 114);
+    height: 55%;
+    width: 100%;
+    position: absolute;
 }
 
 #section {
     display: inline-block;
     position: relative;
     width: 300px;
-    height: 700px;
+    height: 90%;
     border: 5px solid black;
     margin: 5px;
 }
@@ -37,10 +41,10 @@
 
 #tempo-info {
     background-color: blue;
-    width: 300px;
+    width: 30%;
     height: 70px;
     position: absolute;
-    left: 700px;
+    left: 70%;
     top: 25px
 }
 
@@ -159,22 +163,34 @@
 #addclockcanvas {
     position: relative;
     margin: 0 auto;
-    top: 50px;
+    top: 5px;
     display: inline-block;
-    margin-top: 100px;
+}
+
+#addclkbutton {
+    position: relative;
+    display: inline-block;
+    height: 90px;
+    top: 160px;
 }
 
 #addsection {
-    top: 50%;
-    position: absolute;
     display: inline-block;
+    margin: auto;
 }
 
 #waitreccanvas {
     position: absolute;
 }
 
-#addsectioncanvas {
+#waitrec {
+    display: inline-block;
     position: absolute;
+    height: 140px;
+    width: 300px;
+}
+
+#addsectioncanvas {
+    position: relative;
     display: inline-block;
 }
