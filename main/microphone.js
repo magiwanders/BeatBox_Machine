@@ -4,6 +4,7 @@ MICROPHONE AND AUDIO BUFFER*/
 //AUDIO CONTEXT//
 audioctx = new AudioContext()
 
+
 //CANVAS FOR RECORDING DRAWING//
 canvas_rec = document.getElementById("current-scope")
 fullrec_canvas = document.getElementById("full-rec")

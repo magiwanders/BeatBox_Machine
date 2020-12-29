@@ -5,6 +5,7 @@ import numpy as np
 import librosa
 import matplotlib.pyplot as plt
 import novelty
+#import NN_Imp
 
 import get_dataset
 
@@ -22,6 +23,8 @@ def process(data):
 
     #accumulate data for future training
     get_dataset.write_data(data_arr)
+
+    #NN_Imp.Prediction(data_arr)
 
     
     #plt.plot(data_arr)
