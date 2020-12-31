@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link href="style-page.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEATBOX MACHINE</title>
+</head>
+
+<body>
+
+    <div id="root">
+
+        <div id="controllers">
+
+            <div id="top-button-container" class="top-button-container">
+                <div id="play"></div>
+                <div id="stop"></div>
+                <div id="loop"></div>
+                <div id="rec"></div>
+            </div>
+
+            <div id="selectorContainer">
+                <div id="selector"></div>
+            </div>
+
+            <div id="canvasCont">
+                <canvas id="current-scope"></canvas>
+                <canvas id="full-rec"></canvas>
+                <div id="millsec"></div>
+            </div>
+
+            <div id="tempo-info"></div>
+
+        </div>
+
+        <div id="rythmyc-view">
+        </div>
+
+
+    </div>
+
+    <!--<canvas id="current-scope" width=500 height=260 style="
+            background-color: #f5f5dc;
+            border: 3px solid;">
+            </canvas>
+
+    <canvas id="full-rec" width=500 height=260 style="
+            background-color: beige;
+            border: 3px solid;">
+            </canvas>
+        -->
+
+    <!--
+    <div id="container">
+        <input type="number" id="divisions" value="8"> Divisions <button id="simpleRender">Render</button>
+        <br>
+        <button id="addLayerBtn">Add a layer</button>
+        <br> Layers are indexed from 0 (the innermost)
+        <br><input type="number" id="layer" value="0"> Layer to modify
+        <br><input type="number" id="eqN" value="0"><button id="renderEqN">Apply</button>
+        <=n umber of equally spaced dots <br> OR
+            <br><input type="text" id="deg"> <button id="renderDeg">Apply</button>
+            <=c omma separated positions (in degrees, starting from zero on the top, clockwise. The angle must be exact.) <br><button id="play">Play</button><button id="pause">Pause</button><button id="stop">Stop</button>
+    </div>
+
+-->
+    <script src="Model.js"></script>
+    <script src="microphone.js"></script>
+    <script src="fetch.js"></script>
+    <script src="timer.js"></script>
+    <script src="Sound.js"></script>
+    <script src="Default.js"></script>
+    <script src="GridOfDots.js"></script>
+    <script src="Clock.js"></script>
+    <script src="Addbutton.js"></script>
+    <script src="WaitRec.js"></script>
+
+    <script src="Section.js"></script>
+    <script src="View.js"></script>
+    <script src="Controller.js"></script>
+
+
+    <script src="main-script.js"></script>
+
+</body>
+
+
+</html>
