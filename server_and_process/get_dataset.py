@@ -5,7 +5,7 @@ import numpy as np
 
 def write_data(data):
 
-    dataset_path = Path('./kick')
+    dataset_path = Path('./hihat')
     filelist = list(dataset_path.rglob('*wav'))
     filelist = [f.as_posix() for f in filelist]
 
@@ -17,5 +17,5 @@ def write_data(data):
         listnum.append(kick_num)
     
     i = max(listnum) + 1 
-    filename = "./kick/kick_" + str(i) + ".wav"
+    filename = "./hihat/hihat_" + str(i) + ".wav"
     write(filename, 48000, data)
