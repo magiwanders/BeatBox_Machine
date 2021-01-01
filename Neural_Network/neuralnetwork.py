@@ -20,7 +20,7 @@ data ={
     "segment_id": [], #segment id within audio file
     "mapping": [], #class name
     "label":[], #label as integer
-    "mel":[] #MFCC
+    "mel":[] #Mels
 }
 
 '''

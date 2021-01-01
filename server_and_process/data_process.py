@@ -5,7 +5,7 @@ import numpy as np
 import librosa
 import matplotlib.pyplot as plt
 import novelty
-#import NN_Imp
+import NeuralNet
 
 import get_dataset
 
@@ -22,9 +22,9 @@ def process(data):
     data_arr = np.frombuffer(data, dtype=np.float32)
 
     #accumulate data for future training
-    get_dataset.write_data(data_arr)
+    #get_dataset.write_data(data_arr)
 
-    #NN_Imp.Prediction(data_arr)
+    NeuralNet.Prediction(data_arr)
 
     
     #plt.plot(data_arr)

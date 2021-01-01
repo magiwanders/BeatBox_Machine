@@ -7,8 +7,6 @@ Usage::
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import logging
 
-import start_here
-
 import data_process
 import json
 
