@@ -1,7 +1,7 @@
 from pydub import AudioSegment
 from pathlib import Path
 
-dataset_path = Path('./kicks_to_pad')
+dataset_path = Path('./samples/snare_to_pad')
 filelist = list(dataset_path.rglob('*wav'))
 filelist = [f.as_posix() for f in filelist]
 
@@ -15,4 +15,4 @@ for file in filelist:
     silence = AudioSegment.silent(duration=pad_ms-len(audio)+1)
 
     padded = audio + silence  # Adding silence after the audio
-    padded.export('./padd/snare_'+str(filelist.index(file)+92)+'.wav', format='wav')
+    padded.export('./samples/snare_padded/snare_'+str(filelist.index(file)+118)+'.wav', format='wav')
