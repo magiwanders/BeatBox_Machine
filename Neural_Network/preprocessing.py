@@ -18,7 +18,7 @@ data ={
     "orig_file": [], #original name file
     "mapping": [], #class name
     "label":[], #label as integer
-    "mel":[] #MFCC
+    "mfccs":[] #MFCC
 }
 
 for file in filelist:
@@ -28,15 +28,16 @@ for file in filelist:
 
   x,sr = librosa.load(file, sr=22050)
 
-  mel = librosa.feature.melspectrogram(x)
+  #mel = librosa.feature.melspectrogram(x)
+  mfccs = librosa.feature.mfcc(x)
 
   data["orig_file"].append(file)
   data["mapping"].append(map)
   data["label"].append(label)
-  data["mel"].append(mel.tolist())
+  data["mfccs"].append(mfccs.tolist())
 
 
-json_path = "preprocessed.json"
+json_path = "preprocessed_mfccs.json"
 
 with open(json_path, "w") as fp:
   json.dump(data, fp, indent=4)
