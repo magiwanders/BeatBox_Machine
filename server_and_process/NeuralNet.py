@@ -17,7 +17,7 @@ def Prediction(x):
     x = librosa.resample(x,orig_sr,dest_sr)
 
     #Mel
-    mel = librosa.feature.melspectrogram(x)
+    mel = librosa.feature.mfcc(x)
 
     #Shape data
     mel = np.moveaxis(mel,0,1)
