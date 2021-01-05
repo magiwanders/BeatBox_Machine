@@ -60,10 +60,13 @@ def Prediction(x, clicks, divisions):
         pred = SinglePrediction(to_pred)
 
         if(pred == 0):
+            print("hihat")
             clicks_hihat[i] = 1
         elif(pred == 1):
+            print('kick')
             clicks_kick[i] = 1
         elif(pred == 2):
+            print('snare')
             clicks_snare[i] = 1
 
 
@@ -97,6 +100,6 @@ def SinglePrediction(x):
         #Predict
         preds = model(mfcc, training = False)
         preds = np.argmax(preds,axis=1)
-        print(classlist[preds[0]])
+        
 
     return preds[0]

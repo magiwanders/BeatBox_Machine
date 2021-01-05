@@ -54,5 +54,4 @@ def process(data):
     data_to_return["Angles_kick"] = angles_kick.tolist()
     data_to_return["Angles_snare"] = angles_snare.tolist()
 
-
     return data_to_return
