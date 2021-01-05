@@ -16,7 +16,6 @@ import numpy as np
 import scipy as sp
 import librosa
 import matplotlib.pyplot as plt
-import IPython.display as ipd
 from scipy.signal import find_peaks
 
 # Functions definitions:
@@ -264,13 +263,13 @@ def custom_dsp(data_arr):
     noisy_smooth_nov_x = 20*np.log10(noisy_smooth_nov_x) # to dB to isolate and level better the peaks
 
     # Peaks
-    peaks = find_peaks(noisy_smooth_nov_x, height=-20)[0]
+    peaks = find_peaks(noisy_smooth_nov_x, height=-20, distance = 30)[0]
     clicks = np.zeros(len(noisy_smooth_nov_x))
     for i in np.arange(len(noisy_smooth_nov_x)):
-    if i in peaks:
-        clicks[i] = 1
-    else:
-        clicks[i] = 0
+        if i in peaks:
+            clicks[i] = 1
+        else:
+            clicks[i] = 0
 
     # Smoothing
     smooth_clicks = smooth(clicks,win_length=5)
@@ -290,4 +289,5 @@ def custom_dsp(data_arr):
     divisions, bpm = peaks_to_divisions(P_x, Fs_nov, x, Fs, lags)
     print('Divisions: ', divisions)
 
+    
     return divisions, clicks

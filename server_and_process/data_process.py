@@ -7,13 +7,17 @@ import matplotlib.pyplot as plt
 import novelty
 import NeuralNet
 import custom_dsp as dsp
+from pathlib import Path
+
 
 import get_dataset
 
 
 data_to_return = {
-    "Divisions": ,
-    "Angles": [],
+    "Divisions": 5,
+    "Angles_hihat": [],
+    "Angles_kick": [],
+    "Angles_snare": [],
 }
 
 def process(data):
@@ -36,15 +40,19 @@ def process(data):
 
     # OCIO VA FATTO UN PREPROCESSING PER LA LUNGHEZZA DI data_arr -> in funzione del bpm
 
+    write('rec.wav', 48000, data_arr)
+
     divisions, clicks = dsp.custom_dsp(data_arr)
 
 
-    clicks_hihat, clicks_kick, clicks_snare = NeuralNet.Prediction(data_arr, clicks)
+    angles_hihat, angles_kick, angles_snare = NeuralNet.Prediction(data_arr, clicks, divisions)
 
     ##SAVE THE RECORING, JUST FOR DEBUG
 
     data_to_return["Divisions"] = divisions
-    #data_to_return["Angles"] = TODO funzione qui
+    data_to_return["Angles_hihat"] = angles_hihat.tolist()
+    data_to_return["Angles_kick"] = angles_kick.tolist()
+    data_to_return["Angles_snare"] = angles_snare.tolist()
 
 
     return data_to_return
