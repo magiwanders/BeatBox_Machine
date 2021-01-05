@@ -291,3 +291,25 @@ def custom_dsp(data_arr):
 
     
     return divisions, clicks
+
+
+def cut_start(x, division):
+    Fs = 24000
+    nov,fs = compute_novelty(x, Fs)
+
+    nov = smooth(nov,win_length=10)
+    noise = 0.02 + 0*np.random.randn(len(nov))
+    nov = nov + noise
+    nov = 20*np.log10(nov)
+
+    peaks = find_peaks(nov, height=-20, distance = 30)[0]
+
+    peaks = np.asarray(peaks) * 256
+
+    firstcut = peaks[0] - 1000
+    lastcut = peaks[-1] + int(division*fs)
+
+    plt.plot(x[firstcut:lastcut])
+    plt.show()
+
+    return x[firstcut:lastcut]
