@@ -8,9 +8,23 @@ import json
 import tensorflow as tf
 model = tf.keras.models.load_model('kick_snare_hat_classifier.hdf5')
 
-def Prediction(x):
+def Prediction(x, clicks):
+
+    indexesOfNotes = [i for i, e in enumerate(clicks) if e==1]
+
+    # Funzione che ottiene gli indici degli 1
+
+
+    # Funzionw che calcola indici intermedi
+    i1+(i2-i1)/2
+
+    click[]
+    x[clicks]
+    000000000000000000000(0000000000001000000)(0000001000000000000000)(00000000000010000000000)(0000000001000000)00000000
+
+def SinglePrediction(x):
     classlist = ['hihat', 'kick', 'snare']
-    
+
     #Resample
     orig_sr = 48000
     dest_sr = 22050
@@ -27,7 +41,7 @@ def Prediction(x):
     #Load and compile
     #model = tf.keras.models.load_model('kick_snare_hat_classifier.hdf5')
     #model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"])
-   
+
     #Predict
     preds = model.predict(mel)
     preds = np.argmax(preds,axis=1)
