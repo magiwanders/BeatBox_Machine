@@ -18,9 +18,25 @@ def convert_to_angles(divisions, clicks_hihat, clicks_kick, clicks_snare):
     for i in range(divisions):
         step_arr[i] = i*step
 
+    
     angles_hihat = np.multiply(step_arr,clicks_hihat)
     angles_kick = np.multiply(step_arr,clicks_kick)
     angles_snare = np.multiply(step_arr,clicks_snare)
+
+    angles_hihat = angles_hihat[angles_hihat != 0]
+    angles_kick = angles_kick[angles_kick != 0]
+    angles_snare = angles_snare[angles_snare != 0]
+
+    if clicks_hihat[0] == 1:
+        angles_hihat = np.insert(angles_hihat, 0,0)
+
+    if clicks_kick[0] == 1:
+        angles_kick = np.insert(angles_kick, 0,0)
+        print("kicks", angles_kick)
+
+    if clicks_snare[0] == 1:
+        angles_snare = np.insert(angles_snare, 0,0)
+
 
     return angles_hihat, angles_kick, angles_snare
 
