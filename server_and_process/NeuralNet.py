@@ -13,9 +13,9 @@ model = tf.keras.models.load_model('kick_snare_hat_classifier.hdf5')
 def convert_to_angles(divisions, clicks_hihat, clicks_kick, clicks_snare):
     step = 360/divisions
 
-    step_arr = np.zeros(divisions)
+    step_arr = np.zeros(divisions +1 )
 
-    for i in range(divisions):
+    for i in range(divisions+1):
         step_arr[i] = i*step
 
     
@@ -63,9 +63,9 @@ def Prediction(x, clicks, divisions):
     cuts.append(len(clicks)*256)
 
     divisions = int(divisions)
-    clicks_hihat = np.zeros(divisions)
-    clicks_kick = np.zeros(divisions)
-    clicks_snare = np.zeros(divisions)
+    clicks_hihat = np.zeros(divisions +1)
+    clicks_kick = np.zeros(divisions+1)
+    clicks_snare = np.zeros(divisions+1)
 
     print(indexesOfNotes)
     print('cuts:', cuts)
@@ -78,9 +78,11 @@ def Prediction(x, clicks, divisions):
         if(pred == 0):
             print("hihat")
             clicks_hihat[i] = 1
+
         elif(pred == 1):
             print('kick')
             clicks_kick[i] = 1
+
         elif(pred == 2):
             print('snare')
             clicks_snare[i] = 1

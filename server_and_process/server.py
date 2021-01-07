@@ -44,7 +44,7 @@ class S(BaseHTTPRequestHandler):
         ##print(content_length)
         
         ##PASS THE DATA TO SCRIPT PROCESS
-        data_to_return = data_process.process(audio)
+        data_to_return = data_process.process(audio, bpm)
 
       
         self._set_response()

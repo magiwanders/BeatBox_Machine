@@ -20,7 +20,7 @@ data_to_return = {
     "Angles_snare": [],
 }
 
-def process(data):
+def process(data, bpm):
 
     data = list(data.values())
 
@@ -47,11 +47,9 @@ def process(data):
 
     write('rec.wav', 48000, data_arr)
 
-    divisions = dsp.custom_dsp(data_arr)[0]
+    data_arr = dsp.cut_start(data_arr, bpm)
 
-    data_arr = dsp.cut_start(data_arr, divisions)
-
-    clicks = dsp.custom_dsp(data_arr)[1]
+    divisions, clicks = dsp.custom_dsp(data_arr)
 
     angles_hihat, angles_kick, angles_snare = NeuralNet.Prediction(data_arr, clicks, divisions)
 

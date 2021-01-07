@@ -293,7 +293,7 @@ def custom_dsp(data_arr):
     return divisions, clicks
 
 
-def cut_start(x, division):
+def cut_start(x, bpm):
     Fs = 24000
     nov,fs = compute_novelty(x, Fs)
 
@@ -307,7 +307,7 @@ def cut_start(x, division):
     peaks = np.asarray(peaks) * 256
 
     firstcut = peaks[0] - 1000
-    lastcut = peaks[-1] + int(division*fs)
+    lastcut = peaks[-1] + int(bpm * 16)
 
     plt.plot(x[firstcut:lastcut])
     plt.show()
