@@ -69,6 +69,17 @@ class Controller {
                 this.view.updatesection();
             }
 
+            document.getElementById("next").onclick = () => {
+                this.model.bpm.increase()
+                this.view.render()
+
+            }
+
+            document.getElementById("prev").onclick = () => {
+                this.model.bpm.decrease()
+                this.view.render()
+            }
+
 
             /*document.getElementById("renderDeg").onclick = () => {
                 this.model.clock.stop()

@@ -39,13 +39,73 @@ body {
     border: 5px solid black;
 }
 
-#tempo-info {
-    background-color: blue;
-    width: 30%;
-    height: 70px;
+#bpm-value {
+    margin: 0 auto;
+    position: relative;
+    font-size: 24px;
+    font-weight: 700;
+    font: icon;
+}
+
+.tempo-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    width: 100px;
+    height: 50px;
     position: absolute;
     left: 70%;
-    top: 25px
+    top: 25px;
+    border-radius: 20px;
+    border: 2px solid black;
+    transition: 0.5s;
+}
+
+.tempo-info:hover {
+    width: 120px;
+}
+
+.tempo-info #next {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    z-index: 1;
+    transform: translateY(-50%) rotate(135deg);
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.tempo-info:hover #next {
+    opacity: 1;
+    right: 20px;
+}
+
+.tempo-info #prev {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    z-index: 1;
+    transform: translateY(-50%) rotate(315deg);
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.tempo-info:hover #prev {
+    opacity: 1;
+    right: 20px;
 }
 
 .top-button-container {

@@ -22,9 +22,14 @@ data_to_return = {
 
 def process(data):
 
+    data = list(data.values())
+
+    data_arr = np.array(data, dtype= np.float32)
+
+    print(type(data_arr))
 
     ##CONVERSION FROM BYTE ARRAY TO FLOAT32 ARRAY
-    data_arr = np.frombuffer(data, dtype=np.float32)
+    ##data_arr = np.frombuffer(data, dtype=np.float32)
 
     #accumulate data for future training
     #get_dataset.write_data(data_arr

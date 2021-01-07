@@ -9,6 +9,7 @@ import logging
 
 import data_process
 import json
+import simplejson
 
 class S(BaseHTTPRequestHandler):
 
@@ -27,25 +28,28 @@ class S(BaseHTTPRequestHandler):
         
     def do_POST(self):
         content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
-        post_data = self.rfile.read(content_length) # <--- Gets the data itself
+        
+        self.data_string = self.rfile.read(content_length)
+
+        data = simplejson.loads(self.data_string)
+
+        
         logging.info("POST request,\nPath: %s\nHeaders:\n%s\n",
                 str(self.path), str(self.headers))
-
+        
+        bpm = data["BPM"]
+        audio = data["AudioData"]
+       
         ##PRINT THE LENGTH OF THE DATA FOR DEBUG
-        print(content_length)
+        ##print(content_length)
         
         ##PASS THE DATA TO SCRIPT PROCESS
-        data_to_return = data_process.process(post_data)
+        data_to_return = data_process.process(audio)
 
-        '''
-        logging.info("POST request,\nPath: %s\nHeaders:\n%s\n\nBody:\n%s\n",
-                str(self.path), str(self.headers), post_data.decode('utf-8'))
-        '''
+      
         self._set_response()
-
-
         json_string = json.dumps(data_to_return)
-        self.wfile.write(json_string.encode(encoding='utf_8'))        
+        self.wfile.write(json_string.encode(encoding='utf_8'))    
         
 def run(server_class=HTTPServer, handler_class=S,port=8080):
     logging.basicConfig(level=logging.INFO)
