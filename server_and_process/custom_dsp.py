@@ -160,7 +160,7 @@ def k_phi_extract(APM, lags):
 
     # Get the max of each row
     for k in np.arange(APM.shape[0]):
-        max = np.max(APM[k,:])
+        max = np.max(APM[k,0:int(APM.shape[1]/2)])
         max_val.append(max)
 
     max_val = max_val / np.max(max_val) * 1.25
