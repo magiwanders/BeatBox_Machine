@@ -5,6 +5,7 @@ class Model {
         this._addbutton = new AddButton()
         this._addwaitrec = new WaitRec()
         this._section = new Section()
+        this._bpm = new BPM()
     }
 
     get clock() {
@@ -21,6 +22,10 @@ class Model {
 
     get section() {
         return this._section
+    }
+
+    get bpm() {
+        return this._bpm
     }
 
 }

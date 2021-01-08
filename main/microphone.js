@@ -51,6 +51,14 @@ var ms; //media source
 
 var mss; //media stream source
 
+
+///DATA TO POST
+
+data_to_post = {
+    "AudioData": AudioData,
+    "BPM": document.getElementById("bpm-value").textContent
+}
+
 ///SCRIPT PROCESSOR///
 sp = audioctx.createScriptProcessor(bufferLen, 1, 1)
 
@@ -157,7 +165,10 @@ function startreconding() {
 function stoprecording() {
     stop_timer();
     draw_fullrec();
-    post_to_server(AudioData);
+    data_to_post.AudioData = AudioData
+    data_to_post.BPM = document.getElementById("bpm-value").textContent
+    console.log(data_to_post)
+    post_to_server(data_to_post);
     //get_from_server();
 }
 

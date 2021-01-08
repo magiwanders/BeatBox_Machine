@@ -16,7 +16,7 @@ class View {
             // All the building is done inside the Clock class which contains also the building of all these children.
             clockContainer.appendChild(this.model.clock.build())
             */
-
+        document.getElementById("bpm-value").textContent = this.model.bpm.value
 
 
         console.log("Done Rendering")
@@ -31,9 +31,14 @@ class View {
 
         //this.model.addclock.startAnimate();
         console.log("Done Rendering")
+
+        document.getElementById("bpm-value").textContent = this.model.bpm.value
     }
 
     updatesection() {
+
+
+
         var rythmyc = document.getElementById("rythmyc-view")
         var section = this.model.section.build();
         //this.model.addclock.draw();

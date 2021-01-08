@@ -23,7 +23,7 @@ async function post_to_server(audio) {
         header: {
             'Content-Type': 'application/json'
         },
-        body: data
+        body: JSON.stringify(data)
     };
     const post = await fetch('http://127.0.0.1:8080', options);
 
