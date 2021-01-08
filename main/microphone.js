@@ -137,7 +137,7 @@ function draw_fullrec() {
     var canvasHeight = fullrec_canvas.height
     var canvasWidth = fullrec_canvas.width
     fullrec_ctx.save();
-    fullrec_ctx.fillStyle = 'white';
+    fullrec_ctx.fillStyle = "grey";
     fullrec_ctx.fillRect(0, 0, canvasWidth, canvasHeight);
     fullrec_ctx.strokeStyle = 'black';
     fullrec_ctx.translate(0, canvasHeight / 2);

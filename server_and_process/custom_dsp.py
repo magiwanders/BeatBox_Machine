@@ -307,7 +307,7 @@ def cut_start(x, bpm):
     peaks = np.asarray(peaks) * 256
 
     firstcut = peaks[0] - 1000
-    lastcut = peaks[-1] + int(60000/int(bpm)/2/1000 * 48000)
+    lastcut = peaks[-1] + int(60000/int(bpm)/1000 * 48000)
 
     plt.plot(x[firstcut:lastcut])
     plt.show()
