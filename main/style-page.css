@@ -60,6 +60,7 @@ body {
     border-radius: 20px;
     border: 2px solid black;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 .tempo-info:hover {
@@ -128,16 +129,26 @@ body {
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
     border-left: 30px solid green;
+    opacity: 0.8;
+}
+
+#play:hover {
+    opacity: 1;
 }
 
 #stop {
     position: relative;
     background-color: red;
     display: inline-block;
-    margin-top: 20px;
-    margin-right: 20px;
+    margin-top: 25px;
+    margin-right: 25px;
     height: 40px;
     width: 40px;
+    opacity: 0.8;
+}
+
+#stop:hover {
+    opacity: 1;
 }
 
 #loop {
