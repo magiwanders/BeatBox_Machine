@@ -93,6 +93,29 @@ class Controller {
                 this.view.render()
             }*/
 
+
+            // WHERE THE MAGIC HAPPENS
+
+            document.getElementById("stop").onclick = async () => {
+              var ourJson = await stoprecording()
+              console.log("Ueeeee mi è arrivato il json")
+              console.log(ourJson)
+
+              var waitrec = document.getElementById("waitrec")
+              var section = waitrec.parentElement
+
+              waitrec.remove()
+
+              section.prepend(new Clock(
+                'OurClock'
+              )))
+
+
+
+
+
+            };
+
         }, 100)
 
     }
