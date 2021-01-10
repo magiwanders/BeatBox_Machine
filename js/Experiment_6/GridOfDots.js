@@ -7,7 +7,7 @@ class GridOfDots {
   // The LVL1 map is nLayer -> mapOfDotsRelativeToThatLayer
   // The LVL2 map is angleInDegreesOfStep -> 0 if the step is empty, 1 if there is a dot
 
-  constructor(nLayers = 1, divisions = 8) {
+  constructor(nLayers = 3, divisions = 8) {
     this.nLayers = nLayers
     this.divisions = divisions
     this.step = 360/divisions
