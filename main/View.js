@@ -37,8 +37,6 @@ class View {
 
     updatesection() {
 
-
-
         var rythmyc = document.getElementById("rythmyc-view")
         var section = this.model.section.build();
         //this.model.addclock.draw();
