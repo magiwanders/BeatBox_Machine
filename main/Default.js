@@ -3,7 +3,7 @@ class Default {
     static DEBUG = false
 
     // Clock appeareance
-    static innerCircleRadius = 125
+    static innerCircleRadius = 93
     static handOverhang = 10
     static handWidth = 2
     static dotDiameter = 10

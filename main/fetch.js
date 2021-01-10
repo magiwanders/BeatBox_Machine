@@ -1,4 +1,4 @@
-/*IMPLEMENTATION OF FETCH FOR 
+/*IMPLEMENTATION OF FETCH FOR
 POST AND GET REQUEST*/
 
 
@@ -30,5 +30,7 @@ async function post_to_server(audio) {
     const json = await post.json();
 
     console.log(json);
+
+    return json
 
 }

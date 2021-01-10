@@ -106,9 +106,18 @@ class Controller {
 
               waitrec.remove()
 
+              var ourGrid = new GridOfDots(3, ourJson.Divisions)
+              ourGrid.updateLayerArbitrary(0, ourJson.Angles_hihat)
+              ourGrid.updateLayerArbitrary(1, ourJson.Angles_kick)
+              ourGrid.updateLayerArbitrary(2, ourJson.Angles_snare)
+
               section.prepend(new Clock(
-                'OurClock'
-              )))
+                'OurClock',
+                ourGrid,
+                false,
+                false,
+                this.model.bpm.value
+              ).build())
 
 
 
