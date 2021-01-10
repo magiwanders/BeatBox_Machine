@@ -1,11 +1,17 @@
 class WaitRec {
 
-    constructor(id = 'waitrec1', rad = 40, anim = null) {
+    constructor(id = 'waitrec1', rad = 20, anim = null) {
 
         this.id = id
         this.rad = rad;
         this.anim = anim
+
+        this.initrad = rad
+
+
     }
+
+
 
     // BUILD functions
 
@@ -20,14 +26,18 @@ class WaitRec {
         waitrecctx.beginPath();
         waitrecctx.arc(150, 70, this.rad, 0, 2 * Math.PI);
         waitrecctx.lineWidth = 5;
+        waitrecctx.fill();
+        waitrecctx.fillStyle = "red";
         waitrecctx.strokeStyle = "red"
         waitrecctx.stroke();
 
+        /*
         waitrecctx.beginPath();
         waitrecctx.arc(150, 70, this.rad - 20, 0, 2 * Math.PI);
         waitrecctx.lineWidth = 5;
         waitrecctx.strokeStyle = "red"
         waitrecctx.stroke();
+        */
 
         waitreccontainer.appendChild(waitreccanvas)
         return waitreccontainer
@@ -41,22 +51,27 @@ class WaitRec {
         waitrecctx.beginPath();
         waitrecctx.arc(150, 70, this.rad, 0, 2 * Math.PI);
         waitrecctx.lineWidth = 5;
+        waitrecctx.fill();
+        waitrecctx.fillStyle = "red";
         waitrecctx.strokeStyle = "red"
         waitrecctx.stroke();
 
+        /*
         waitrecctx.beginPath();
         waitrecctx.arc(150, 70, this.rad - 20, 0, 2 * Math.PI);
         waitrecctx.lineWidth = 5;
         waitrecctx.strokeStyle = "red"
         waitrecctx.stroke();
+        */
 
     }
 
     update() {
-        if (this.rad < 60) {
-            this.rad += 0.9;
+
+        if (this.rad < 30) {
+            this.rad += 0.3
         } else {
-            this.rad = 20;
+            this.rad = 20
         }
 
         this.draw();
