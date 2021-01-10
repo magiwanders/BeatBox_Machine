@@ -162,13 +162,13 @@ function startreconding() {
 }
 
 //STOP THE RECORDING AND SEND DATA//
-function stoprecording() {
+async function stoprecording() {
     stop_timer();
     draw_fullrec();
     data_to_post.AudioData = AudioData
     data_to_post.BPM = document.getElementById("bpm-value").textContent
     console.log(data_to_post)
-    post_to_server(data_to_post);
+    return await post_to_server(data_to_post);
     //get_from_server();
 }
 
