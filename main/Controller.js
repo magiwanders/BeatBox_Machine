@@ -32,7 +32,28 @@ class Controller {
             }*/
 
             document.getElementById("play").onclick = () => {
-                this.model.clock.play()
+                //this.model.clock.play()
+
+                // cicla tutti i clock e fa partire quelli armati
+                for(var i=0; i<this.model._nOfSections;i++) {
+                  console.log('At section ' + i + ' section: ' + this.model.sections[i])
+                  for(var j=0; j<this.model.sections[i]._clocks.length;j++) {
+                    var currentClock = this.model.sections[i]._clocks[j]
+                    console.log('At clock ' + j + ' clock: ' + currentClock)
+
+                    if (currentClock.isPlaying) {
+                      console.log('Found clock ['+i+','+j+'] playing, gonna stop')
+                      currentClock.stop()
+                    } else {
+                      console.log('Found clock ['+i+','+j+'] NOT playing')
+                        if (currentClock.isArmed) {
+                          console.log('Found clock ['+i+','+j+'] NOT playing and ARMED. Gonna play')
+                          currentClock.play()
+                      }
+                    }
+                  }
+                }
+
                 this.view.render()
             }
 
@@ -57,17 +78,17 @@ class Controller {
 
 
             ////RETRIVE THE LAST ADD BUTTON////
-            var rythmyc = document.getElementById("rythmyc-view");
-            var addsectionbtn = rythmyc.children[0];
-            addsectionbtn.onclick = () => {
-                discardrecording()
-
-                this.view.render();
-                if (document.getElementById("waitrec")) {
-                    document.getElementById("waitrec").remove();
-                }
-                this.view.updatesection();
-            }
+            // var rythmyc = document.getElementById("rythmyc-view");
+            // var addsectionbtn = rythmyc.children[0];
+            // addsectionbtn.onclick = () => {
+            //     discardrecording()
+            //
+            //     this.view.render();
+            //     if (document.getElementById("waitrec")) {
+            //         document.getElementById("waitrec").remove();
+            //     }
+            //     this.view.updatesection();
+            // }
 
             document.getElementById("next").onclick = () => {
                 this.model.bpm.increase()
@@ -93,7 +114,6 @@ class Controller {
                 this.view.render()
             }*/
 
-
             // WHERE THE MAGIC HAPPENS
 
             document.getElementById("stop").onclick = async () => {
@@ -106,18 +126,42 @@ class Controller {
 
               waitrec.remove()
 
+              const sectionIndex = parseInt(document.getElementById("sectionIndex").innerHTML, 10)
+              const clockIndex = parseInt(document.getElementById("clockIndex").innerHTML, 10)
+
               var ourGrid = new GridOfDots(3, ourJson.Divisions)
               ourGrid.updateLayerArbitrary(0, ourJson.Angles_hihat)
               ourGrid.updateLayerArbitrary(1, ourJson.Angles_kick)
               ourGrid.updateLayerArbitrary(2, ourJson.Angles_snare)
 
-              section.prepend(new Clock(
+              const myClock = new Clock(
                 'OurClock',
                 ourGrid,
                 false,
                 false,
                 this.model.bpm.value
-              ).build())
+              )
+
+              const armed_dot = myClock.getArmedDot()
+
+              armed_dot.onclick = () => {
+                myClock.isArmed = !myClock.isArmed
+                this.view.render()
+              }
+
+              this.model.sections[sectionIndex].addClock(myClock)
+
+              this.view.render()
+
+
+              //
+              // section.prepend(new Clock(
+              //   'OurClock',
+              //   ourGrid,
+              //   false,
+              //   false,
+              //   this.model.bpm.value
+              // ).build())
 
 
 

@@ -14,6 +14,11 @@ class Clock {
         this.tempo = tempo
     }
 
+
+    getArmedDot() {
+      return this.gridOfDots.armed_dot
+    }
+
     // HAND functions
 
     play() {
@@ -29,6 +34,7 @@ class Clock {
     stop() {
         this.pause()
         this.gridOfDots.handAngle = 0
+        this.gridOfDots.hand.style.transform = 'translateX(-50%) rotate('+ this.gridOfDots.handAngle +'deg)'
     }
 
 
@@ -59,10 +65,15 @@ class Clock {
 
     build() {
         var container = document.createElement('div')
+        container.setAttribute("class", "clock_container")
 
         if (Default.DEBUG) container = this.injectDebugData(container)
 
         container.appendChild(this.gridOfDots.build())
+
+        const armed_dot = this.gridOfDots.armed_dot
+        if (this.isArmed) armed_dot.style.backgroundColor = 'red'
+        else armed_dot.style.backgroundColor = 'black'
 
         return container
     }

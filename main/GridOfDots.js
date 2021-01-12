@@ -14,6 +14,8 @@ class GridOfDots {
     this.mapOfLayers = this.generateMapOfLayers()
     this.handAngle = 0
     this.sound = new Sound()
+    this.armed_dot = this.buildDot(Default.innerCircleRadius,Default.innerCircleRadius, Default.dotDiameter+20)
+    this.hand = this.buildHand()
   }
 
   static getMyPoorThing() {
@@ -99,10 +101,9 @@ class GridOfDots {
   // Advances the hand position by one step
   // TODO: interpolate the positions to obtain a smooth transition
   nextDivision(interval) {
-    const hand = document.getElementById("hand")
     this.handAngle += this.step
     if(this.handAngle>=360) this.handAngle = this.handAngle-360
-    hand.style.transform = 'translateX(-50%) rotate('+ this.handAngle +'deg)'
+    this.hand.style.transform = 'translateX(-50%) rotate('+ this.handAngle +'deg)'
 
     for(var i=0;i<this.mapOfLayers.size;i++){
       var layer = this.mapOfLayers.get(i)
@@ -121,8 +122,8 @@ class GridOfDots {
     layers = this.buildDivisions(layers)
 
     // Add central dot and hand to it
-    layers.appendChild(this.buildDot())
-    layers.appendChild(this.buildHand())
+    layers.appendChild(this.armed_dot)
+    layers.appendChild(this.hand)
 
     // Add other layers
     for(var layerNumber=1; layerNumber<this.nLayers; layerNumber++) {
@@ -151,7 +152,6 @@ class GridOfDots {
 
   buildHand() {
     const hand = this.buildGenericHand()
-    hand.id = 'hand'
     hand.style.transform = 'translateX(-50%) rotate('+ this.handAngle +'deg)'
     return hand
   }

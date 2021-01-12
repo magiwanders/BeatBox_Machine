@@ -1,6 +1,6 @@
 class WaitRec {
 
-    constructor(id = 'waitrec1', rad = 20, anim = null) {
+    constructor(id = 'waitrec1', rad = 10, anim = null) {
 
         this.id = id
         this.rad = rad;
@@ -24,7 +24,7 @@ class WaitRec {
         var waitrecctx = waitreccanvas.getContext('2d');
 
         waitrecctx.beginPath();
-        waitrecctx.arc(150, 70, this.rad, 0, 2 * Math.PI);
+        waitrecctx.arc(150, 30, this.rad, 0, 2 * Math.PI);
         waitrecctx.lineWidth = 5;
         waitrecctx.fill();
         waitrecctx.fillStyle = "red";
@@ -49,7 +49,7 @@ class WaitRec {
         var waitrecctx = waitreccanvas.getContext('2d');
 
         waitrecctx.beginPath();
-        waitrecctx.arc(150, 70, this.rad, 0, 2 * Math.PI);
+        waitrecctx.arc(150, 30, this.rad, 0, 2 * Math.PI);
         waitrecctx.lineWidth = 5;
         waitrecctx.fill();
         waitrecctx.fillStyle = "red";
@@ -68,10 +68,10 @@ class WaitRec {
 
     update() {
 
-        if (this.rad < 30) {
+        if (this.rad < 20) {
             this.rad += 0.3
         } else {
-            this.rad = 20
+            this.rad = 10
         }
 
         this.draw();
