@@ -36,18 +36,12 @@ class Controller {
 
                 // cicla tutti i clock e fa partire quelli armati
                 for(var i=0; i<this.model._nOfSections;i++) {
-                  console.log('At section ' + i + ' section: ' + this.model.sections[i])
                   for(var j=0; j<this.model.sections[i]._clocks.length;j++) {
                     var currentClock = this.model.sections[i]._clocks[j]
-                    console.log('At clock ' + j + ' clock: ' + currentClock)
-
                     if (currentClock.isPlaying) {
-                      console.log('Found clock ['+i+','+j+'] playing, gonna stop')
                       currentClock.stop()
                     } else {
-                      console.log('Found clock ['+i+','+j+'] NOT playing')
                         if (currentClock.isArmed) {
-                          console.log('Found clock ['+i+','+j+'] NOT playing and ARMED. Gonna play')
                           currentClock.play()
                       }
                     }
