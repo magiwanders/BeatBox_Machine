@@ -309,7 +309,9 @@ def cut_start(x, bpm):
     firstcut = peaks[0] - 1000
     lastcut = peaks[-1] + int(60000/int(bpm)/1000 * 48000)
 
+    '''
     plt.plot(x[firstcut:lastcut])
     plt.show()
+    '''
 
     return x[firstcut:lastcut]
