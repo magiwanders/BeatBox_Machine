@@ -111,19 +111,18 @@ class GridOfDots {
 
             if (layer.get(this.handAngle) == 1) {
                 if (i == 0) {
-                    play_hihat()
-
+                    this.sound.play_hihat()
                 } else if (i == 1) {
-                    play_kick()
+                    this.sound.play_kick()
                 } else if (i == 2) {
-                    play_snare()
+                    this.sound.play_snare()
                 }
             }
 
 
             /*
-            
-            
+
+
             */
         }
     }

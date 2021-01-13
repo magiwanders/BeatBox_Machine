@@ -18,20 +18,19 @@ class Sound {
         g.gain.linearRampToValueAtTime(0, c.currentTime + 0.2)
 
     }
-}
 
+    play_kick() {
+        var kick_sound = new Audio('Sound/kick.wav')
+        kick_sound.play()
+    }
 
-function play_kick() {
-    var kick_sound = new Audio('kick.wav')
-    kick_sound.play()
-}
+    play_snare() {
+        var snare_sound = new Audio('Sound/snare.wav')
+        snare_sound.play()
+    }
 
-function play_snare() {
-    var snare_sound = new Audio('snare.wav')
-    snare_sound.play()
-}
-
-function play_hihat() {
-    var hihat_sound = new Audio('hihat.wav')
-    hihat_sound.play()
+    play_hihat() {
+        var hihat_sound = new Audio('Sound/hihat.wav')
+        hihat_sound.play()
+    }
 }
