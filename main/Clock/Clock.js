@@ -5,18 +5,27 @@ class Clock {
         gridOfDots = new GridOfDots(),
         isArmed = false,
         isPlaying = false,
-        tempo = 60
+        tempo = 60,
+        sectionIndex = 0,
+        clockIndex = 0,
+        model = null,
+        view = null
     ) {
         this.id = id
         this.gridOfDots = gridOfDots
         this.isArmed = isArmed
         this.isPlaying = isPlaying
         this.tempo = tempo
+        this.sectionIndex = sectionIndex
+        this.clockIndex = clockIndex
+        this.remove_btn = this.buildRemBtn(20, 40, Default.dotDiameter + 10)
+        this.model = model
+        this.view = view
     }
 
 
     getArmedDot() {
-      return this.gridOfDots.armed_dot
+        return this.gridOfDots.armed_dot
     }
 
     // HAND functions
@@ -34,7 +43,7 @@ class Clock {
     stop() {
         this.pause()
         this.gridOfDots.handAngle = 0
-        this.gridOfDots.hand.style.transform = 'translateX(-50%) rotate('+ this.gridOfDots.handAngle +'deg)'
+        this.gridOfDots.hand.style.transform = 'translateX(-50%) rotate(' + this.gridOfDots.handAngle + 'deg)'
     }
 
 
@@ -70,6 +79,7 @@ class Clock {
         if (Default.DEBUG) container = this.injectDebugData(container)
 
         container.appendChild(this.gridOfDots.build())
+        container.prepend(this.remove_btn)
 
         const armed_dot = this.gridOfDots.armed_dot
         if (this.isArmed) armed_dot.style.backgroundColor = 'red'
@@ -78,6 +88,43 @@ class Clock {
         return container
     }
 
+    buildRemBtn(
+        top = Default.innerCircleRadius,
+        left = Default.innerCircleRadius,
+        d = Default.dotDiameter
+    ) {
+        const dot = document.createElement('div')
+        dot.className = 'rem-btn'
+        dot.style.top = top + 'px'
+        dot.style.left = left + 'px'
+        dot.style.width = d + 'px'
+        dot.style.height = d + 'px'
+        dot.style['z-index'] = '2'
+        return dot
+    }
+
+    getRemBtn() {
+        return this.remove_btn
+    }
+
+    bindAll() {
+        this.gridOfDots.armed_dot.onclick = () => {
+            this.isArmed = !this.isArmed
+            this.view.render()
+        }
+
+        this.remove_btn.onclick = () => {
+            this.model.sections[this.sectionIndex].removeClock(this.clockIndex)
+            for (var i = 0; i < this.model.sections[this.sectionIndex]._clocks.length; i++) {
+                console.log("bindo il clock", i)
+
+                this.model.sections[this.sectionIndex]._clocks[i].clockIndex = i;
+
+                this.model.sections[this.sectionIndex]._clocks[i].bindAll()
+            }
+            this.view.render()
+        }
+    }
 
     // DEBUG funcions
 
@@ -100,7 +147,5 @@ class Clock {
 
         return container
     }
-
-
 
 }

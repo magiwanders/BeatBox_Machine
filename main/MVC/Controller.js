@@ -35,17 +35,17 @@ class Controller {
                 //this.model.clock.play()
 
                 // cicla tutti i clock e fa partire quelli armati
-                for(var i=0; i<this.model._nOfSections;i++) {
-                  for(var j=0; j<this.model.sections[i]._clocks.length;j++) {
-                    var currentClock = this.model.sections[i]._clocks[j]
-                    if (currentClock.isPlaying) {
-                      currentClock.stop()
-                    } else {
-                        if (currentClock.isArmed) {
-                          currentClock.play()
-                      }
+                for (var i = 0; i < this.model._nOfSections; i++) {
+                    for (var j = 0; j < this.model.sections[i]._clocks.length; j++) {
+                        var currentClock = this.model.sections[i]._clocks[j]
+                        if (currentClock.isPlaying) {
+                            currentClock.stop()
+                        } else {
+                            if (currentClock.isArmed) {
+                                currentClock.play()
+                            }
+                        }
                     }
-                  }
                 }
 
                 this.view.render()
@@ -110,52 +110,66 @@ class Controller {
 
             // WHERE THE MAGIC HAPPENS
 
-            document.getElementById("stop").onclick = async () => {
-              var ourJson = await stoprecording()
-              console.log("Ueeeee mi è arrivato il json")
-              console.log(ourJson)
+            document.getElementById("stop").onclick = async() => {
+                var ourJson = await stoprecording()
+                console.log("Ueeeee mi è arrivato il json")
+                console.log(ourJson)
 
-              var waitrec = document.getElementById("waitrec")
-              var section = waitrec.parentElement
+                var waitrec = document.getElementById("waitrec")
+                var section = waitrec.parentElement
 
-              waitrec.remove()
+                waitrec.remove()
 
-              const sectionIndex = parseInt(document.getElementById("sectionIndex").innerHTML, 10)
-              const clockIndex = parseInt(document.getElementById("clockIndex").innerHTML, 10)
+                const sectionIndex = parseInt(document.getElementById("sectionIndex").innerHTML, 10)
+                const clockIndex = parseInt(document.getElementById("clockIndex").innerHTML, 10)
 
-              var ourGrid = new GridOfDots(3, ourJson.Divisions)
-              ourGrid.updateLayerArbitrary(0, ourJson.Angles_hihat)
-              ourGrid.updateLayerArbitrary(1, ourJson.Angles_kick)
-              ourGrid.updateLayerArbitrary(2, ourJson.Angles_snare)
+                var ourGrid = new GridOfDots(3, ourJson.Divisions)
+                ourGrid.updateLayerArbitrary(0, ourJson.Angles_hihat)
+                ourGrid.updateLayerArbitrary(1, ourJson.Angles_kick)
+                ourGrid.updateLayerArbitrary(2, ourJson.Angles_snare)
 
-              const myClock = new Clock(
-                'OurClock',
-                ourGrid,
-                false,
-                false,
-                this.model.bpm.value
-              )
+                const myClock = new Clock(
+                    'OurClock',
+                    ourGrid,
+                    false,
+                    false,
+                    this.model.bpm.value,
+                    sectionIndex,
+                    clockIndex,
+                    this.model,
+                    this.view
+                )
 
-              const armed_dot = myClock.getArmedDot()
+                /*
+                const armed_dot = myClock.getArmedDot()
+                const rem_btn = myClock.getRemBtn()
 
-              armed_dot.onclick = () => {
-                myClock.isArmed = !myClock.isArmed
+                
+                armed_dot.onclick = () => {
+                    myClock.isArmed = !myClock.isArmed
+                    this.view.render()
+                }
+
+                rem_btn.onclick = () => {
+                    this.model.sections[sectionIndex].removeClock(clockIndex)
+                    this.view.render()
+                }
+                */
+                myClock.bindAll()
+
+                this.model.sections[sectionIndex].addClock(myClock)
+
                 this.view.render()
-              }
-
-              this.model.sections[sectionIndex].addClock(myClock)
-
-              this.view.render()
 
 
-              //
-              // section.prepend(new Clock(
-              //   'OurClock',
-              //   ourGrid,
-              //   false,
-              //   false,
-              //   this.model.bpm.value
-              // ).build())
+                //
+                // section.prepend(new Clock(
+                //   'OurClock',
+                //   ourGrid,
+                //   false,
+                //   false,
+                //   this.model.bpm.value
+                // ).build())
 
 
 

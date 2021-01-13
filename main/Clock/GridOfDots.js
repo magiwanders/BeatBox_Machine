@@ -16,6 +16,7 @@ class GridOfDots {
         this.sound = new Sound()
         this.armed_dot = this.buildDot(Default.innerCircleRadius, Default.innerCircleRadius, Default.dotDiameter + 20)
         this.hand = this.buildHand()
+
     }
 
     static getMyPoorThing() {
@@ -118,12 +119,6 @@ class GridOfDots {
                     this.sound.play_snare()
                 }
             }
-
-
-            /*
-
-
-            */
         }
     }
 

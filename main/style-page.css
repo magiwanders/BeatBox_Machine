@@ -160,7 +160,6 @@ body {
     height: 25px;
     border: 5px solid #0074d9;
     border-radius: 75%;
-    border-right-color: transparent;
     top: 20%;
     left: 30%;
 }
@@ -253,7 +252,6 @@ body {
     display: inline-block;
     margin: auto;
     height: 50px;
-
 }
 
 #waitreccanvas {
@@ -270,4 +268,10 @@ body {
 #addsectioncanvas {
     position: absolute;
     display: inline-block;
+}
+
+.rem-btn {
+    position: relative;
+    background-color: black;
+    border-radius: 50%;
 }
