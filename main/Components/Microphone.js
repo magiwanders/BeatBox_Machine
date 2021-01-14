@@ -17,13 +17,13 @@ a = audioctx.createAnalyser();
 g = audioctx.createGain();
 
 ///BUTTON DEFITIONS///
-let startbutton = document.getElementById("rec");
+//let startbutton = document.getElementById("rec");
 //let stopbutton = document.getElementById("stop");
 let resumebutton = document.getElementById("loop");
 let playbackbutton = document.getElementById("play");
 
 //BUTTONS FUNCTION CONNECTION///
-startbutton.onclick = startreconding;
+//startbutton.onclick = startreconding;
 //stopbutton.onclick = stoprecording;
 resumebutton.onclick = function() { audioctx.resume() }
 playbackbutton.onclick = PlayBack;
