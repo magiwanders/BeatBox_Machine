@@ -38,12 +38,8 @@ class Controller {
                 for (var i = 0; i < this.model._nOfSections; i++) {
                     for (var j = 0; j < this.model.sections[i]._clocks.length; j++) {
                         var currentClock = this.model.sections[i]._clocks[j]
-                        if (currentClock.isPlaying) {
-                            currentClock.stop()
-                        } else {
-                            if (currentClock.isArmed) {
-                                currentClock.play()
-                            }
+                        if (currentClock.isArmed) {
+                            currentClock.play()
                         }
                     }
                 }
@@ -51,12 +47,25 @@ class Controller {
                 this.view.render()
             }
 
+            document.getElementById("stop").onclick = () => {
+                // cicla tutti i clock e fa partire quelli armati
+                for (var i = 0; i < this.model._nOfSections; i++) {
+                    for (var j = 0; j < this.model.sections[i]._clocks.length; j++) {
+                        var currentClock = this.model.sections[i]._clocks[j]
+                        if (currentClock.isPlaying) {
+                            currentClock.stop()
+                        }
+                    }
+                }
+            }
+
+
             /*document.getElementById("pause").onclick = () => {
                 this.model.clock.pause()
                 this.view.render()
             }*/
 
-            document.getElementById("stop").onclick = () => {
+            document.getElementById("create-clock").onclick = () => {
                 this.model.clock.stop()
                 this.view.render()
                 stoprecording();
@@ -86,12 +95,29 @@ class Controller {
 
             document.getElementById("next").onclick = () => {
                 this.model.bpm.increase()
+
+                for (var i = 0; i < this.model._nOfSections; i++) {
+                    for (var j = 0; j < this.model.sections[i]._clocks.length; j++) {
+                        var currentClock = this.model.sections[i]._clocks[j]
+                        currentClock.updateBpm();
+                        clearInterval(currentClock.gridOfDots.handMoving)
+                        currentClock.gridOfDots.startRotating(60 / this.model.bpm.value * 1000)
+                    }
+                }
                 this.view.render()
 
             }
 
             document.getElementById("prev").onclick = () => {
                 this.model.bpm.decrease()
+                for (var i = 0; i < this.model._nOfSections; i++) {
+                    for (var j = 0; j < this.model.sections[i]._clocks.length; j++) {
+                        var currentClock = this.model.sections[i]._clocks[j]
+                        currentClock.updateBpm();
+                        clearInterval(currentClock.gridOfDots.handMoving)
+                        currentClock.gridOfDots.startRotating(60 / this.model.bpm.value * 1000)
+                    }
+                }
                 this.view.render()
             }
 
@@ -110,7 +136,7 @@ class Controller {
 
             // WHERE THE MAGIC HAPPENS
 
-            document.getElementById("stop").onclick = async() => {
+            document.getElementById("create-clock").onclick = async() => {
                 var ourJson = await stoprecording()
                 console.log("Ueeeee mi è arrivato il json")
                 console.log(ourJson)
@@ -141,20 +167,20 @@ class Controller {
                 )
 
                 /*
-                const armed_dot = myClock.getArmedDot()
-                const rem_btn = myClock.getRemBtn()
+                        const armed_dot = myClock.getArmedDot()
+                        const rem_btn = myClock.getRemBtn()
 
                 
-                armed_dot.onclick = () => {
-                    myClock.isArmed = !myClock.isArmed
-                    this.view.render()
-                }
+                        armed_dot.onclick = () => {
+                            myClock.isArmed = !myClock.isArmed
+                            this.view.render()
+                        }
 
-                rem_btn.onclick = () => {
-                    this.model.sections[sectionIndex].removeClock(clockIndex)
-                    this.view.render()
-                }
-                */
+                        rem_btn.onclick = () => {
+                            this.model.sections[sectionIndex].removeClock(clockIndex)
+                            this.view.render()
+                        }
+                        */
                 myClock.bindAll()
 
                 this.model.sections[sectionIndex].addClock(myClock)

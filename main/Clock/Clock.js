@@ -31,6 +31,9 @@ class Clock {
     // HAND functions
 
     play() {
+        if (this.gridOfDots.handMoving) {
+            clearInterval(this.gridOfDots.handMoving)
+        }
         this.isPlaying = true
         this.gridOfDots.startRotating(60 / this.tempo * 1000)
     }
@@ -46,6 +49,9 @@ class Clock {
         this.gridOfDots.hand.style.transform = 'translateX(-50%) rotate(' + this.gridOfDots.handAngle + 'deg)'
     }
 
+    updateBpm() {
+        this.tempo = this.model.bpm.value
+    }
 
     // STRUCTURE functions
 
@@ -85,6 +91,8 @@ class Clock {
         if (this.isArmed) armed_dot.style.backgroundColor = 'red'
         else armed_dot.style.backgroundColor = 'black'
 
+        console.log("buildato con bpm", this.tempo)
+
         return container
     }
 
@@ -108,12 +116,25 @@ class Clock {
     }
 
     bindAll() {
+
         this.gridOfDots.armed_dot.onclick = () => {
             this.isArmed = !this.isArmed
+            if (!this.isArmed && this.isPlaying) {
+                this.gridOfDots.stopRotating()
+                this.gridOfDots.handAngle = 0
+                this.gridOfDots.hand.style.transform = 'translateX(-50%) rotate(' + this.gridOfDots.handAngle + 'deg)'
+            }
+
+            if (this.isPlaying && this.isArmed) {
+                this.play()
+            }
             this.view.render()
         }
 
         this.remove_btn.onclick = () => {
+
+            clearInterval(this.gridOfDots.handMoving)
+
             this.model.sections[this.sectionIndex].removeClock(this.clockIndex)
             for (var i = 0; i < this.model.sections[this.sectionIndex]._clocks.length; i++) {
                 console.log("bindo il clock", i)

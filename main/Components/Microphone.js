@@ -19,7 +19,7 @@ g = audioctx.createGain();
 ///BUTTON DEFITIONS///
 //let startbutton = document.getElementById("rec");
 //let stopbutton = document.getElementById("stop");
-let resumebutton = document.getElementById("loop");
+let resumebutton = document.getElementById("resume-ctx");
 let playbackbutton = document.getElementById("play");
 
 //BUTTONS FUNCTION CONNECTION///

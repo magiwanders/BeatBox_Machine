@@ -102,7 +102,7 @@ class GridOfDots {
     // Advances the hand position by one step
     // TODO: interpolate the positions to obtain a smooth transition
     nextDivision(interval) {
-        this.handAngle += this.step
+
         if (this.handAngle >= 360) this.handAngle = this.handAngle - 360
         this.hand.style.transform = 'translateX(-50%) rotate(' + this.handAngle + 'deg)'
 
@@ -120,6 +120,7 @@ class GridOfDots {
                 }
             }
         }
+        this.handAngle += this.step
     }
 
 
