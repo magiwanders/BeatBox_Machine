@@ -204,7 +204,7 @@ class GridOfDots {
         layer.style.margin = Default.clockMargin + 'px'
         layer.style.height = (Default.circleDiameter + layerNumber * 2 * Default.clockMargin) + 'px'
         layer.style.width = (Default.circleDiameter + layerNumber * 2 * Default.clockMargin) + 'px'
-        layer.style.border = Default.borderThickness + 'px solid green'
+        layer.style.border = Default.borderThickness + 'px solid white'
         layer.style.transform = 'translateX(-' + Default.borderThickness + 'px) translateY(-' + Default.borderThickness + 'px)'
 
         layer = this.populateOfDots(layer, layerNumber)

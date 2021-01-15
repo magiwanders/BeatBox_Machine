@@ -102,12 +102,18 @@ class Clock {
         d = Default.dotDiameter
     ) {
         const dot = document.createElement('div')
-        dot.className = 'rem-btn'
-        dot.style.top = top + 'px'
-        dot.style.left = left + 'px'
-        dot.style.width = d + 'px'
-        dot.style.height = d + 'px'
-        dot.style['z-index'] = '2'
+        var img = document.createElement("img")
+        img.src = "Components/cancel.png"
+        img.id = "rem-clock-img"
+            /*
+            dot.className = 'rem-btn'
+            dot.style.top = top + 'px'
+            dot.style.left = left + 'px'
+            dot.style.width = d + 'px'
+            dot.style.height = d + 'px'
+            dot.style['z-index'] = '2'
+            */
+        dot.appendChild(img)
         return dot
     }
 
