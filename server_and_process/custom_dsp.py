@@ -288,8 +288,10 @@ def custom_dsp(data_arr):
     # Apm peaks to divisions
     divisions, bpm = peaks_to_divisions(P_x, Fs_nov, x, Fs, lags)
     print('Divisions: ', divisions)
+    if(divisions > 24):
+        divisions=24
+        print('Divisions artificially cut to the allowed maximum of 24')
 
-    
     return divisions, clicks
 
 
