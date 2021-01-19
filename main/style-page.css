@@ -377,9 +377,13 @@ position: absolute;
     transform: rotate(90deg);
 }
 
+.rem-button-container {
+  height: 5px;
+}
+
 #rem-clock-img {
     width: 40px;
-    top: 50px;
+    top:5px;
     position: relative;
     left: 15px;
     transition: 0.2s;
