@@ -13,45 +13,52 @@
 
     <div id="root">
 
-        <div id="controllers">
+        <div id = "controllers-container">
+          <div id="controllers">
 
-            <div id="play">
-                <img id="play-img" src="Components/play-button.png"></img>
-            </div>
+              <div id="selectorContainer">
+                  <div id="selector"></div>
+              </div>
 
-            <div id="stop">
-                <img id="stop-img" src="Components/stop.png"></img>
-            </div>
+              <div id="canvasCont">
+                <div class="button-container" id="button-container1">
+                  <div id="create-clock">
+                      <img id="create-clock-img" src="Components/timelapse.png"></img>
+                  </div>
 
-            <div id="create-clock">
-                <img id="create-clock-img" src="Components/timelapse.png"></img>
-            </div>
-
-            <div id="resume-ctx">
-                <img id="resume-ctx-img" src="Components/power-button.png"></img>
-            </div>
-
-            <div id="selectorContainer">
-                <div id="selector"></div>
-            </div>
-
-            <div id="canvasCont">
-                <canvas id="current-scope"></canvas>
-                <canvas id="full-rec"></canvas>
-                <div id="millsec"></div>
-            </div>
-
-            <div class="tempo-info">
-                <span id="next"></span>
-                <span id="prev"></span>
-                <div id="box">
-                    <span id="bpm-value"></span>
+                  <div id="resume-ctx">
+                      <img id="resume-ctx-img" src="Components/power-button.png"></img>
+                  </div>
                 </div>
-            </div>
+                  <canvas id="current-scope"></canvas>
+                  <canvas id="full-rec"></canvas>
+                  <div class="button-container" id="button-container2">
+                    <div id="play">
+                        <img id="play-img" src="Components/play-button.png"></img>
+                    </div>
 
+                    <div id="stop">
+                        <img id="stop-img" src="Components/stop.png"></img>
+                    </div>
+
+                  </div>
+                  <div id="millsec"></div>
+              </div>
+
+              <div class="tempo-info">
+                  <span id="next"></span>
+                  <span id="prev"></span>
+                  <div id="box">
+                      <span id="bpm-value"></span>
+                  </div>
+              </div>
+
+          </div>
         </div>
 
-        <div id="rythmyc-view">
+        <div id="rythmyc-view-container">
+          <div id="rythmyc-view">
+          </div>
         </div>
         <p id='sectionIndex'></p>
         <p id='clockIndex'></p>
