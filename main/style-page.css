@@ -281,6 +281,13 @@ body {
   left: 5px;
 }
 
+#millsec {
+  left: 120px;
+bottom: 5px;
+width: 100px;
+position: absolute;
+}
+
 #button-container2 {
   width: 150px;
 }
