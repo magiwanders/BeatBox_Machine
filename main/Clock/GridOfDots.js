@@ -134,6 +134,7 @@ class GridOfDots {
         layers = this.buildDivisions(layers)
 
         // Add central dot and hand to it
+        this.armed_dot.style.zIndex = 10
         layers.appendChild(this.armed_dot)
         layers.appendChild(this.hand)
 
