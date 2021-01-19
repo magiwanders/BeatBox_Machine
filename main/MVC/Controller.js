@@ -59,6 +59,28 @@ class Controller {
                 }
             }
 
+            document.getElementById("selector").onclick = () => {
+                //this.model.clock.play()
+
+                // cicla tutti i clock e fa partire quelli armati
+                for (var i = 0; i < this.model._nOfSections; i++) {
+                    for (var j = 0; j < this.model.sections[i]._clocks.length; j++) {
+                        var currentClock = this.model.sections[i]._clocks[j]
+                        if (i==this.model.selectedSection) {
+                          currentClock.isArmed = true
+                          currentClock.play()
+                        } else {
+                          currentClock.isArmed = false
+                          currentClock.stop()
+                        }
+                    }
+                }
+
+                this.model.selectedSection++
+                if(this.model.selectedSection>=4) this.model.selectedSection-=4
+                this.view.render()
+            }
+
 
             /*document.getElementById("pause").onclick = () => {
                 this.model.clock.pause()
@@ -170,7 +192,7 @@ class Controller {
                         const armed_dot = myClock.getArmedDot()
                         const rem_btn = myClock.getRemBtn()
 
-                
+
                         armed_dot.onclick = () => {
                             myClock.isArmed = !myClock.isArmed
                             this.view.render()
