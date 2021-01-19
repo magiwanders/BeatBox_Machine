@@ -121,7 +121,9 @@ A Rhythmic Clock is composed by:
    
 ### Section
 
-In this version of the application there are four simultaneous section. Each section can contain up to three clocks. 
+* In this version of the application there are four simultaneous section. Each section can contain up to three clocks.
+* The section has by default an "Add Button" used to start a new recording.
+* All the clocks of a specific section can be armed using the "Section Controller" in the top left of the page.
 
 
 ### Backend
