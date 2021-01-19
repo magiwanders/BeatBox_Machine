@@ -109,10 +109,6 @@ A Rhythmic Clock is composed by:
 * The dots built on the clock's layers are used to visualize the final rhythm presented. 
 * Eack dot correspond to a drum sound to be played.
    
-
-
-
-
 ##Contact
 
 * Simone Shawn Cazzaniga: simoneshawn.cazzaniga@mail.polimi.it
