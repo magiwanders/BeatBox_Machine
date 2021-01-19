@@ -21,6 +21,7 @@ class WaitRec {
 
         var waitreccanvas = document.createElement('canvas')
         waitreccanvas.setAttribute("id", "waitreccanvas")
+        waitreccanvas.style.left = 120 + 'px'
         var waitrecctx = waitreccanvas.getContext('2d');
 
         waitrecctx.beginPath();
