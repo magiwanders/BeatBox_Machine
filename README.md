@@ -1,3 +1,3 @@
-# BeatBox_Machine
+# BeatBox Machine
 
 CMRM and ACTAM project
