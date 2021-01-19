@@ -236,7 +236,7 @@ body {
     position: relative;
     display: inline-block;
     border-radius: 50%;
-    background-color: #16697a;
+    background-color: #808080;
 }
 
 .hand {
@@ -334,9 +334,9 @@ position: absolute;
 }
 
 #addsection {
-    display: inline-block;
+    /*display: inline-block;*/
     margin: auto;
-    height: 50px;
+    height: 0px;
 }
 
 #waitreccanvas {
@@ -364,7 +364,7 @@ position: absolute;
 #addbuttonimg {
     width: 50px;
     position: relative;
-    left: 125px;
+    left: 245px;
     top: 5px;
     transition: 0.5s;
 }
@@ -372,14 +372,18 @@ position: absolute;
 #addbuttonimg:hover {
     width: 50px;
     position: relative;
-    left: 125px;
+    left: 245px;
     top: 5px;
     transform: rotate(90deg);
 }
 
+.rem-button-container {
+  height: 5px;
+}
+
 #rem-clock-img {
     width: 40px;
-    top: 50px;
+    top:5px;
     position: relative;
     left: 15px;
     transition: 0.2s;

@@ -102,6 +102,7 @@ class Clock {
         d = Default.dotDiameter
     ) {
         const dot = document.createElement('div')
+        dot.className = "rem-button-container"
         var img = document.createElement("img")
         img.src = "Components/cancel.png"
         img.id = "rem-clock-img"
