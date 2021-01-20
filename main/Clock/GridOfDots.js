@@ -97,20 +97,35 @@ class GridOfDots {
 
     stopRotating() {
         clearInterval(this.handMoving)
+        clearInterval(this.handSteps)
     }
 
     // Advances the hand position by one step
     // TODO: interpolate the positions to obtain a smooth transition
     nextDivision(interval) {
 
-        if (this.handAngle >= 360) this.handAngle = this.handAngle - 360
-        this.hand.style.transform = 'translateX(-50%) rotate(' + this.handAngle + 'deg)'
+      var oldHandAngle = this.handAngle
+
+
+        this.handAngle += this.step
+
+        this.hand.style.transition = '0.1s'
+
+        if (this.handAngle >= 360) {
+          this.hand.style.transform = 'translateX(-50%) rotate(' + this.handAngle + 'deg)'
+          this.handAngle = this.handAngle - 360
+          element.removeProperty('transition');
+          this.hand.style.transform = 'translateX(-50%) rotate(' + this.handAngle + 'deg)'
+          this.hand.style.transition = '0.1s'
+          this.hand.style.transform = 'translateX(-50%) rotate(' + this.handAngle + 'deg)'
+        } else {
+            this.hand.style.transform = 'translateX(-50%) rotate(' + this.handAngle + 'deg)'
+        }
 
         for (var i = 0; i < this.mapOfLayers.size; i++) {
             var layer = this.mapOfLayers.get(i)
                 //layer.get(this.handAngle) == 1 ? console.log("Layer", i + ": Note!") : console.log("")
-
-            if (layer.get(this.handAngle) == 1) {
+            if (layer.get(oldHandAngle) == 1) {
                 if (i == 0) {
                     this.sound.play_hihat()
                 } else if (i == 1) {
@@ -120,7 +135,6 @@ class GridOfDots {
                 }
             }
         }
-        this.handAngle += this.step
     }
 
 

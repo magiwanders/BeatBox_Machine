@@ -244,12 +244,20 @@ body {
     position: absolute;
     transform: translateX(-50%) rotate(0deg);
     transform-origin: bottom;
+    transition: 0s;
 }
 
 .dot {
     background-color: black;
     border-radius: 50%;
     position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.tigran-chopin-button {
+    background-color: black;
+    border-radius: 50%;
+    position: relative;
     transform: translateX(-50%) translateY(-50%);
 }
 

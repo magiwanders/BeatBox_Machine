@@ -19,6 +19,8 @@ class Clock {
         this.sectionIndex = sectionIndex
         this.clockIndex = clockIndex
         this.remove_btn = this.buildRemBtn(20, 40, Default.dotDiameter + 10)
+        this.tempo_btn = this.buildTCbtn()
+        this.tTfC = false
         this.model = model
         this.view = view
     }
@@ -31,6 +33,7 @@ class Clock {
     // HAND functions
 
     play() {
+      console.log(this.tempo)
         if (this.gridOfDots.handMoving) {
             clearInterval(this.gridOfDots.handMoving)
         }
@@ -86,6 +89,7 @@ class Clock {
 
         container.appendChild(this.gridOfDots.build())
         container.prepend(this.remove_btn)
+        container.prepend(this.tempo_btn)
 
         const armed_dot = this.gridOfDots.armed_dot
         if (this.isArmed) armed_dot.style.backgroundColor = 'red'
@@ -94,6 +98,36 @@ class Clock {
         console.log("buildato con bpm", this.tempo)
 
         return container
+    }
+
+    buildTCbtn(
+        top = 280,
+        left = 30,
+        d = Default.dotDiameter
+    ) {
+        const dot = document.createElement('div')
+        dot.className = "tigran-chopin-button"
+        dot.style.top = top + 'px'
+        dot.style.left = left + 'px'
+        dot.style.width = d + 'px'
+        dot.style.height = d + 'px'
+        dot.style['z-index'] = '2'
+
+        dot.onclick = () => {
+          console.log("clickedddddd" + this.tempo)
+          if(this.tTfC) {
+            this.tempo = this.model._bpm.value
+            this.tTfC = false
+            dot.style.backgroundColor = 'black'
+          } else if (!this.tTfC) {
+            this.tempo = (this.gridOfDots.divisions/8)*this.model._bpm.value
+            this.tTfC = true
+            dot.style.backgroundColor = 'red'
+          }
+          console.log(this.tempo)
+        }
+
+        return dot
     }
 
     buildRemBtn(
