@@ -47,11 +47,10 @@ body {
 }
 
 #selector {
-    width: 146px;
-    height: 146px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     border: 2px solid black;
-    top: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -318,6 +317,7 @@ body {
     /*width: 200px;
     height: 100%;*/
     left: 1%;
+    top: 20%;
     position: absolute;
 }
 
