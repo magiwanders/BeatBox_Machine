@@ -125,6 +125,9 @@ class Controller {
                         currentClock.updateBpm();
                         if (currentClock.isArmed) {
                             clearInterval(currentClock.gridOfDots.handMoving)
+                            clearInterval(currentClock.gridOfDots.handSteps)
+                            currentClock.handAngle = 0
+                            currentClock.rotation = 0
                             currentClock.gridOfDots.startRotating(60 / this.model.bpm.value * 1000)
                         }
                     }
@@ -141,6 +144,9 @@ class Controller {
                         currentClock.updateBpm();
                         if (currentClock.isArmed) {
                             clearInterval(currentClock.gridOfDots.handMoving)
+                            clearInterval(currentClock.gridOfDots.handSteps)
+                            currentClock.handAngle = 0
+                            currentClock.rotation = 0
                             currentClock.gridOfDots.startRotating(60 / this.model.bpm.value * 1000)
                         }
                     }

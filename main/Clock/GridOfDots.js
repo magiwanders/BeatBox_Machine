@@ -93,30 +93,43 @@ class GridOfDots {
     // MOVING RELATED FUNCTIONS
 
     startRotating(interval) {
+      for (var i = 0; i < this.mapOfLayers.size; i++) {
+          var layer = this.mapOfLayers.get(i)
+              //layer.get(this.handAngle) == 1 ? console.log("Layer", i + ": Note!") : console.log("")
+          if (layer.get(this.handAngle) == 1) {
+              if (i == 0) {
+                  this.sound.play_hihat()
+              } else if (i == 1) {
+                  this.sound.play_kick()
+              } else if (i == 2) {
+                  this.sound.play_snare()
+              }
+          }
+      }
         this.handMoving = setInterval((interval) => this.nextDivision(), interval)
+        var shortInterval = interval/25
+        this.handSteps = setInterval(() => this.nextHandStep(), shortInterval)
     }
 
     stopRotating() {
         clearInterval(this.handMoving)
         clearInterval(this.handSteps)
+        this.handAngle = 0
+        this.rotation = 0
+        this.hand.style.transform = 'translateX(-50%) rotate(' + this.rotation + 'deg)'
     }
 
     // Advances the hand position by one step
     // TODO: interpolate the positions to obtain a smooth transition
     nextDivision(interval) {
 
-      if(this.handAngle>=360) {
-        this.handAngle -= 360
-        this.hand.style.transform = 'translateX(-50%) rotate(' + 0 + 'deg)'
-      }
-      var oldHandAngle = this.handAngle
-      this.handAngle += this.step
 
-        this.hand.style.transition = '0.1s'
+        //this.hand.style.transform = 'translateX(-50%) rotate(' + 0 + 'deg)'
+        //this.hand.style.transition = '0.1s'
 
-        this.hand.style.transform = 'translateX(-50%) rotate(' + this.handAngle + 'deg)'
+        //this.hand.style.transform = 'translateX(-50%) rotate(' + this.handAngle + 'deg)'
 
-        if(this.handAngle>=360) this.hand.style.removeProperty('transition');
+      //  if(this.handAngle>=360) this.hand.style.removeProperty('transition');
 
         // if (this.handAngle >= 360) {
         //   //this.hand.style.removeProperty('transition');
@@ -131,10 +144,14 @@ class GridOfDots {
         //     this.hand.style.transform = 'translateX(-50%) rotate(' + this.handAngle + 'deg)'
         // }
 
+
+        this.handAngle += this.step
+        if(this.handAngle>=360) this.handAngle -= 360
+
         for (var i = 0; i < this.mapOfLayers.size; i++) {
             var layer = this.mapOfLayers.get(i)
                 //layer.get(this.handAngle) == 1 ? console.log("Layer", i + ": Note!") : console.log("")
-            if (layer.get(oldHandAngle) == 1) {
+            if (layer.get(this.handAngle) == 1) {
                 if (i == 0) {
                     this.sound.play_hihat()
                 } else if (i == 1) {
@@ -144,6 +161,14 @@ class GridOfDots {
                 }
             }
         }
+
+
+    }
+
+    nextHandStep(interval) {
+      this.hand.style.transform = 'translateX(-50%) rotate(' + this.rotation + 'deg)'
+      if(this.rotation>=360) this.rotation -= 360
+      this.rotation += this.step/25
     }
 
 
