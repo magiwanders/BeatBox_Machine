@@ -52,7 +52,14 @@ body {
     border-radius: 50%;
     border: 2px solid black;
     top: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transform: translateY(50%);
+    font-size: revert;
+    font-family: sans-serif;
+    cursor: pointer;
+    user-select: none;
 }
 
 #bpm-value {
@@ -80,6 +87,7 @@ body {
     border: 2px solid black;
     transition: 0.5s;
     cursor: pointer;
+    user-select: none;
 }
 
 .tempo-info:hover {

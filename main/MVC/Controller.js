@@ -66,18 +66,19 @@ class Controller {
                 for (var i = 0; i < this.model._nOfSections; i++) {
                     for (var j = 0; j < this.model.sections[i]._clocks.length; j++) {
                         var currentClock = this.model.sections[i]._clocks[j]
-                        if (i==this.model.selectedSection) {
-                          currentClock.isArmed = true
-                          currentClock.play()
+                        if (i == this.model.selectedSection) {
+                            currentClock.isArmed = true
+                            currentClock.play()
                         } else {
-                          currentClock.isArmed = false
-                          currentClock.stop()
+                            currentClock.isArmed = false
+                            currentClock.stop()
                         }
                     }
                 }
 
                 this.model.selectedSection++
-                if(this.model.selectedSection>=4) this.model.selectedSection-=4
+                    if (this.model.selectedSection >= 4) this.model.selectedSection -= 4
+
                 this.view.render()
             }
 
@@ -122,8 +123,10 @@ class Controller {
                     for (var j = 0; j < this.model.sections[i]._clocks.length; j++) {
                         var currentClock = this.model.sections[i]._clocks[j]
                         currentClock.updateBpm();
-                        clearInterval(currentClock.gridOfDots.handMoving)
-                        currentClock.gridOfDots.startRotating(60 / this.model.bpm.value * 1000)
+                        if (currentClock.isArmed) {
+                            clearInterval(currentClock.gridOfDots.handMoving)
+                            currentClock.gridOfDots.startRotating(60 / this.model.bpm.value * 1000)
+                        }
                     }
                 }
                 this.view.render()
@@ -136,8 +139,10 @@ class Controller {
                     for (var j = 0; j < this.model.sections[i]._clocks.length; j++) {
                         var currentClock = this.model.sections[i]._clocks[j]
                         currentClock.updateBpm();
-                        clearInterval(currentClock.gridOfDots.handMoving)
-                        currentClock.gridOfDots.startRotating(60 / this.model.bpm.value * 1000)
+                        if (currentClock.isArmed) {
+                            clearInterval(currentClock.gridOfDots.handMoving)
+                            currentClock.gridOfDots.startRotating(60 / this.model.bpm.value * 1000)
+                        }
                     }
                 }
                 this.view.render()
