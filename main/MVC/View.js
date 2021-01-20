@@ -18,13 +18,18 @@ class View {
             */
         document.getElementById("bpm-value").textContent = this.model.bpm.value
 
+        var selected_section = this.model.selectedSection
+        if (this.model.selectedSection == 0) {
+            selected_section = 4;
+        }
+        document.getElementById("selector").textContent = selected_section
 
 
         const rythmic_view = document.getElementById("rythmyc-view")
         rythmic_view.innerHTML = ''
 
-        for(var i=0; i<this.model._nOfSections; i++) {
-          rythmic_view.append(this.model.sections[i].build())
+        for (var i = 0; i < this.model._nOfSections; i++) {
+            rythmic_view.append(this.model.sections[i].build())
         }
 
         console.log("Done Rendering")
@@ -32,7 +37,7 @@ class View {
 
     firstrender() {
         console.log("Rendering...")
-        // const rythmyc = document.getElementById("rythmyc-view");
+            // const rythmyc = document.getElementById("rythmyc-view");
 
         // var addsectionbtn = this.model.addbutton.build("addsection", "addsectioncanvas")
         // rythmyc.prepend(addsectionbtn)
