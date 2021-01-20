@@ -40,7 +40,7 @@ The goal of the project is to create an application to convert the rhythm produc
 
 ### Usage
 
-![Alt Text](Beatbox_gif.gif)
+![Alt Text](screenshots/clock_creation.gif)
 
 #### General Usage
 
