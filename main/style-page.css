@@ -9,11 +9,11 @@ body {
 }
 
 #controllers-container {
-  position: relative;
-  width: 100%;
-  height: 300px;
-  display: flex;
-  justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
 }
 
 #controllers {
@@ -42,7 +42,8 @@ body {
     height: 905px;
     border: 2px solid #d99257;
     margin: 5px;
-    background-color: #ffd295;;
+    background-color: #ffd295;
+    ;
 }
 
 #selector {
@@ -50,7 +51,7 @@ body {
     height: 146px;
     border-radius: 50%;
     border: 2px solid black;
-    top:50%;
+    top: 50%;
     transform: translateY(50%);
 }
 
@@ -139,12 +140,12 @@ body {
 }
 
 #play {
-    position:absolute;
+    position: absolute;
     display: inline-block;
     margin: auto;
     height: 50px;
     top: 50%;
-    left:10%;
+    left: 10%;
     transform: translateY(-50%);
 }
 
@@ -154,15 +155,20 @@ body {
     /*left: 1225px;
     top: 175px;*/
     transition: 0.5s;
+    border-radius: 50%;
+}
+
+#play-img:hover {
+    background-color: rgb(32, 155, 32);
 }
 
 #stop {
-    position:absolute;
+    position: absolute;
     display: inline-block;
     margin: auto;
     height: 50px;
     top: 50%;
-    right:10%;
+    right: 10%;
     transform: translateY(-50%);
 }
 
@@ -172,25 +178,25 @@ body {
     /*left: 1100px;
     top: 175px;*/
     transition: 0.2s;
-    border-radius: 8px;
+    border-radius: 50%;
 }
 
 #stop-img:hover {
     opacity: 1;
-    background-color: red;
+    background-color: rgb(245, 28, 28);
 }
 
 #create-clock {
     display: inline-block;
-    position:absolute;
+    position: absolute;
     margin: auto;
     height: 50px;
-    top:50%;
+    top: 50%;
     transform: translateY(-50%);
 }
 
 #create-clock-img {
-    position:absolute;
+    position: absolute;
     width: 50px;
     /*left: 400px;
     top: 175px;*/
@@ -270,32 +276,32 @@ body {
 }
 
 .button-container {
-  position: relative;
-  display: inline-block;
-  /*background-color: green;
+    position: relative;
+    display: inline-block;
+    /*background-color: green;
   top:50%;
   left:25%;
   transform: translateY(-50%);*/
-  width: 100px;
-  height: 150px;
-  left: 5px;
+    width: 100px;
+    height: 150px;
+    left: 5px;
 }
 
 #millsec {
-  left: 120px;
-bottom: 5px;
-width: 100px;
-position: absolute;
+    left: 120px;
+    bottom: 5px;
+    width: 100px;
+    position: absolute;
 }
 
 #button-container2 {
-  width: 150px;
+    width: 150px;
 }
 
 #selectorContainer {
     /*width: 200px;
     height: 100%;*/
-    left:1%;
+    left: 1%;
     position: absolute;
 }
 
@@ -306,7 +312,7 @@ position: absolute;
     border: 2px solid black;
     width: 230px;
     height: 146px;
-    left:5px;
+    left: 5px;
 }
 
 #full-rec {
@@ -378,12 +384,12 @@ position: absolute;
 }
 
 .rem-button-container {
-  height: 5px;
+    height: 5px;
 }
 
 #rem-clock-img {
     width: 40px;
-    top:5px;
+    top: 5px;
     position: relative;
     left: 15px;
     transition: 0.2s;
