@@ -173,17 +173,17 @@ The buttons present are mainly:
 * Started by the server POST, is use both the BPM value and raw data recording.
 * Its aim is to extrapolate the number of the divisions necessary to express the rhythm and call the neural network for the classification of a single drum sound.
 * The sequence of algorithms of processing are mainly:
-    1. Creation of a novelty version of the recording.
-    2. Find firts and last peak of the function.
-    3. Trim the recording according to first and last peak and the BPM. 
-    4. Novelty function of the trimmed recording.
-    5. APM (Autocorrelation Phase Matrix) based on the novelty. 
-    6. Check on the K and $phi$ found by keep the most relevant.
-    7. Peaks to divisions conversion.
-    8. Trimming the recording in order to isolate only one drum sound.
-    9. MFCCs extraction and neural network prediction on the isolated drum sound.
-    10. Creation of arrays for every drum sound (Kick, Hihat, Snare) containg the position of the sound in the rhythm.
-    11. Conversion from linear array to angles interpretaed by the clocks.
+1. Creation of a novelty version of the recording.
+2. Find firts and last peak of the function.
+3. Trim the recording according to first and last peak and the BPM. 
+4. Novelty function of the trimmed recording.
+5. APM (Autocorrelation Phase Matrix) based on the novelty. 
+6. Check on the K and $phi$ found by keep the most relevant.
+7. Peaks to divisions conversion.
+8. Trimming the recording in order to isolate only one drum sound.
+9. MFCCs extraction and neural network prediction on the isolated drum sound.
+10. Creation of arrays for every drum sound (Kick, Hihat, Snare) containg the position of the sound in the rhythm.
+11. Conversion from linear array to angles interpretaed by the clocks.
 
 #### Neural Network
 
