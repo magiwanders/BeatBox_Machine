@@ -185,7 +185,7 @@ The buttons present are mainly:
 3. Trim the recording according to first and last peak and the BPM. 
 4. Novelty function of the trimmed recording.
 5. APM (Autocorrelation Phase Matrix) based on the novelty. 
-6. Check on the K and $phi$ found by keep the most relevant.
+6. Check on the K and phi found by keep the most relevant.
 7. Peaks to divisions conversion.
 8. Trimming the recording in order to isolate only one drum sound.
 9. MFCCs extraction and neural network prediction on the isolated drum sound.
