@@ -9,6 +9,8 @@ Created by:
 
 ## About The Project
 
+Presentation link: https://drive.google.com/file/d/1AeHddVSj2ac9mk5Ok0uodCFo_lKkN1NA/view?usp=sharing
+
 The goal of the project is to create an application to convert the rhythm produced by the human beatbox into a rhythmic visual system and a playable rhythmic clock. The aim is to support those who want quickly sketch a rhythmic idea to be used later in their projects.
 
 ### Built With
@@ -86,6 +88,11 @@ The current verison of the application is based on a client-server architecture.
 
 * The frontend of the application is built with HTML, CSS and Javascript interaction.
 * The whole main page is based on a MVC (Model View Controller) framework realised specifically for the application.
+
+![Alt Text](screenshots/model_2.png)
+
+![Alt Text](screenshots/model_1.png)
+
 * The main components of the application are:
     * Rhythmic Cloks
     * Sections
