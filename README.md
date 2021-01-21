@@ -79,7 +79,7 @@ The goal of the project is to create a proof of concept to convert the rhythm pr
 
 * When enabled, it makes the hand of the relative clock move as it were synchronous to an 8 division clock. This is the fastest way to create polythytms in the application. 
 * Contrary to the global bpm, this changes only the inner tempo of its single clock, so it cannot be changed while the clock is playing! Funky behaviour will emerge if you do that. Stop the clocks, change the switch-bpm setting and re-play the clocks.
-* This function currently hits the limits of the JavaScript setInterval() function in some special cases: in fact, when the computation of the new clock bpm happens, JavaScript cuts the precision of the intervals to a finite number of decimal places, which after some revolutions makes the clock go out of sync. For this there is currently no clean solution. A patch could be added in the future based on error estimation. 
+* This function currently hits the limits of the JavaScript setInterval() function in some special cases: in fact, when the computation of the new clock bpm happens, JavaScript cuts the precision of the intervals to a finite number of decimal places. In case the original value had a large number of decimal places, it gets cut, which after some revolutions makes the clock go out of sync. For this there is currently no clean solution. A patch could be added in the future based on error estimation. 
 
 #### Remove
 
