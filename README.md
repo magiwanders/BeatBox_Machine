@@ -4,7 +4,7 @@
 
 Created by:
 
-**Enrico Zoboli & Simone Shawn Cazzaniga**
+**Enrico Zoboli & Simone Shawn Cazzaniga**  
 
 
 ## About The Project
