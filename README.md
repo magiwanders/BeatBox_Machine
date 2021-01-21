@@ -178,6 +178,18 @@ async function MicrophoneConnect() {
 }
 ```
 
+* The recording takes place by resetting an index in a for loop which will write into a Float32 Buffer.
+* As code below the Recording function will take the output of the script processor as input to write the audio data in the AudioData buffer.
+```
+function RecordAudio(data_rec) {
+    for (var i = 0; i < data_rec.length; i++) {
+        if (AudioIndex < AudioData.length) {
+            AudioData[AudioIndex++] = data_rec[i];
+        }
+    }
+}
+
+```
 #### Fetch
 
 * It takes place in the Javascript enviroment by clicking the "Create Clock" button.
