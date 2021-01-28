@@ -11,7 +11,7 @@ Created by:
 
 Presentation link: https://drive.google.com/file/d/1AeHddVSj2ac9mk5Ok0uodCFo_lKkN1NA/view?usp=sharing
 
-The goal of the project is to create an application to convert the rhythm produced by the human beatbox into a rhythmic visual system and a playable rhythmic clock. The aim is to support those who want quickly sketch a rhythmic idea to be used later in their projects.
+The goal of the project is to create a proof of concept to convert the rhythm produced by the human beatbox into a rhythmic visual system and a playable rhythmic clock. The aim is to support those who want quickly sketch a rhythmic idea to be used later in their projects.
 
 ### Built With
 
@@ -31,7 +31,7 @@ The goal of the project is to create an application to convert the rhythm produc
 
 **1. Python 3.8**
 
-**2. Python packages necessary to run localy the project:**
+**2. Python dependencies (the python server is meant to be run locally):**
 
 * Numpy
 * Simplejson
@@ -40,22 +40,28 @@ The goal of the project is to create an application to convert the rhythm produc
 * Sklearn
 * Tensorflow
 
-### Usage
+#### Setup and Basic Usage
 
-![Alt Text](screenshots/clock_creation.gif)
-
-#### General Usage
-
-* Start the Python server by running in Python3 the file "start_here.py". Be sure to include all packages in the enviroment as listed in the section **Prerequisites**.
+* Start the Python server by running in Python3 the file "start_here.py". Be sure to include all packages in the enviroment as listed in the section **Python dependencies**.
 
 * Click the start/power button to start the AudioContext of your browser.
 
 * Start a new recording by click the "Add button" of a section.
 
-* Beatbox the desired rhythm with your device microphone.
+* Beatbox one measure of the desired rhythm with your device microphone.
 
-* Create a new **"Rhythm Clock"** by clicking the "Clock Button".
+* Stop the recording by clicking the "Clock Button", a new **"Rhythm Clock"** will be created automatically.
 
+![Alt Text](screenshots/clock_creation.gif)
+
+#### Further Usage
+
+#### Sections and clock creation
+
+* Each vertical section can contain up to three clocks. The application contains 4 sections. Both this numbers will be made infinite in a future version of the application.
+* To Add a new clock in a section click the "Add Button" in the top of the section.
+* All the clocks inserted in a section can be armed simultaneusly by using the "Section Division" in the top left corner of the application page. The button loops the activation of the sections.
+* Note that when a clock is created only the rythmic structure of the recording is conserved, not the bpm. This is intended behaviour, as it must be easy to create measures of arbitrary length and polyrhythms. 
 
 #### Playback
 
@@ -66,20 +72,21 @@ The goal of the project is to create an application to convert the rhythm produc
 #### BPM
 
 * Adjust the BPM of the Rhythm using the BPM section in the right corner.
-* Every clock is synchronized to the BPM value showed in the box.
+* Every clock is synchronized to the BPM value showed in the box, unless the bottom-left "switch-bpm" toggle is activated. For more information on the effect of this button see the "Switch-bpm" section below.
+* The bpm shuld be set at the beginning of the session, but it is possible to change it midway: all the clocks will be updated.
 
-#### Section
+#### Switch-bpm
 
-* Each vertical section can contain up to three clocks.
-* To Add a new clock in a section click the "Add Button" in the top of the section.
-* All the clocks inserted in a section can be armed simultaneusly by using the "Section Division" in the top left corner of the application page.
+* When enabled, it makes the hand of the relative clock move as it were synchronous to an 8 division clock. This is the fastest way to create polythytms in the application. 
+* Contrary to the global bpm, this changes only the inner tempo of its single clock, so it cannot be changed while the clock is playing! Funky behaviour will emerge if you do that. Stop the clocks, change the switch-bpm setting and re-play the clocks.
+* This function currently hits the limits of the JavaScript setInterval() function in some special cases: in fact, when the computation of the new clock bpm happens, JavaScript cuts the precision of the intervals to a finite number of decimal places. In case the original value had a large number of decimal places, it gets cut, which after some revolutions makes the clock go out of sync. For this there is currently no clean solution. A patch could be added in the future based on error estimation. 
 
 #### Remove
 
 * Each clock can be removed from the application page using the "Cross Button" in the left corner of a clock.
 
 
-## Description
+## Architecture and components
 
 The current verison of the application is based on a client-server architecture. The client is represented by the HTML/CSS/JS page, while the server by the Python backend code.
 
@@ -152,7 +159,7 @@ The buttons present are mainly:
 
 * The comunication between Javascript and Python is possible thanks to a Python server process at the address "localhost::8080".
 
-* The data generated by the user recording is processed in order to obtain a visualization data interpreted by the clocks.
+* The data generated by the user recording is processed, returning all the necessary information to build a clock.
 
 * All the backend processes could be seen as:
     * Microphone
@@ -223,7 +230,7 @@ function RecordAudio(data_rec) {
 
 #### Neural Network
 
-* The neural network is used for the prediction over the sounds passed by the processing part.
+* A very simple neural network is used for the prediction over the sounds passed by the processing part.
 * It can predict over three main diffrent sounds (in this version): Kick, Snare, Hihat.
 * It's based over a state-of-the-art Tensorflow 1D Convolutional Neural Network.
 * the input is based on the standard Librosa MFCCs coefficients.
