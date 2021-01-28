@@ -6,10 +6,7 @@
 # ### Importing audio WAVs
 
 # Needed libraries:
-
 # In[612]:
-
-
 import sys
 import os
 import numpy as np
@@ -21,6 +18,25 @@ from scipy.signal import find_peaks
 # Functions definitions:
 
 # In[614]:
+
+#Cut the end and the beginning of the recording
+def cut_start(x, bpm):
+    Fs = 24000
+    nov,fs = compute_novelty(x, Fs)
+
+    nov = smooth(nov,win_length=10)
+    noise = 0.02 + 0*np.random.randn(len(nov))
+    nov = nov + noise
+    nov = 20*np.log10(nov)
+
+    peaks = find_peaks(nov, height=-20, distance = 30)[0]
+
+    peaks = np.asarray(peaks) * 256
+
+    firstcut = peaks[0] - 1000
+    lastcut = peaks[-1] + int(60000/int(bpm)/1000 * 48000)
+
+    return x[firstcut:lastcut]
 
 
 # This calculates the abs() of the spectrogram of the audio in dB. Uses hanning window.
@@ -39,15 +55,15 @@ def spectrogram(x, Fs, N=2048, H=1024):
 
     return Y_dB, time_axis, frequency_axis
 
-
+#Compute Novelty utily
 def warp(x, low, interval):
     return np.remainder(x - low, interval) + low
 
-
+#Compute Novelty utily
 def princarg(x):
     return warp(x, -np.pi, 2*np.pi)
 
-
+#Complex Based Novelty
 def compute_novelty(x, Fs=1, N=512, H=256):
 
     X = librosa.stft(x, n_fft=N, hop_length=H, win_length=N, window='hanning')
@@ -78,7 +94,7 @@ def compute_novelty(x, Fs=1, N=512, H=256):
 
     return novelty_complex, Fs_feature
 
-
+#APM Computation
 def compute_APM(x, lags):
     N = len(x)
     n_lags = len(lags)
@@ -97,7 +113,7 @@ def compute_APM(x, lags):
 
     return P, C
 
-
+#Smoothing function
 def smooth(x, win_length=11, win_type='boxcar'):
     if x.ndim != 1:
         raise ValueError('smooth only accepts 1 dimension arrays.')
@@ -107,6 +123,7 @@ def smooth(x, win_length=11, win_type='boxcar'):
 
     if win_length<3:
         return x
+
     # mirror pad
     s = np.pad(x, int(win_length/2), mode='reflect')
 
@@ -126,32 +143,29 @@ def smooth(x, win_length=11, win_type='boxcar'):
     # return the useful part of y
     return y
 
+#Estimation of BPM (not used)
 def global_BPM_estimation(APM, Fs, lags):
     n_k = APM.shape[0]
     kmin = lags[0]
 
     #hihgest peak value of APM
-    max_APM = 0;
+    max_APM = 0
     #k value associated to the APM's peak
-    max_k = 0;
+    max_k = 0
 
     #Look at which K is associated the higher peak of APM
     for k in np.arange(n_k):
         for phi in np.arange(k):
             if(APM[k,phi] > max_APM):
-                max_APM = APM[k,phi];
+                max_APM = APM[k,phi]
                 max_k = k + kmin
 
     #Compute the BPM given the max k
     BPM = np.around(60/(1/Fs*max_k))
 
-#     print(Fs)
-#     print(max_k)
-#     print(BPM)
-
     return BPM
 
-
+#Extraction from APM of K and PHI
 def k_phi_extract(APM, lags):
 
     max_val = []
@@ -184,8 +198,7 @@ def k_phi_extract(APM, lags):
             only_one=True
             break
 
-    #print(n_erased)
-
+    #Inster in the K array the second K
     if(not only_one):
         second_k = np.argmax(second_max_val) + n_erased
         second_max_k_value = np.max(second_max_val)
@@ -198,11 +211,11 @@ def k_phi_extract(APM, lags):
         phi = np.argmax((APM[k,:]))
 
     k += kmin
-    #print('k:', k)
 
     return k, phi, only_one
 
 
+#Function to extract division from lags
 def peaks_to_divisions(P_x, Fs_nov, x, Fs, lags):
     ks, phis, only_one = k_phi_extract(P_x, lags)
 
@@ -214,11 +227,7 @@ def peaks_to_divisions(P_x, Fs_nov, x, Fs, lags):
     samples_each_beat[0] = 60*Fs/bpm[0]
     how_many_beats_in_recording[0] = np.rint(len(x)/samples_each_beat[0])
 
-#     print(Fs_nov)
-#    print(np.around(60/(1/Fs_nov*ks[1])))
-#     print(bpm[0])
-#     print(samples_each_beat[0])
-
+    #Compute the LCM if two different peaks are revealed
     if(not only_one):
         bpm[1] = np.around(60/(1/Fs_nov*ks[1]))
         samples_each_beat[1] = 60*Fs/bpm[1]
@@ -234,6 +243,7 @@ def peaks_to_divisions(P_x, Fs_nov, x, Fs, lags):
     return divisions, bpm
 
 
+#Full pipeline processing
 def custom_dsp(data_arr):
     Fs = 24000
     x = data_arr
@@ -294,26 +304,3 @@ def custom_dsp(data_arr):
 
     return divisions, clicks
 
-
-def cut_start(x, bpm):
-    Fs = 24000
-    nov,fs = compute_novelty(x, Fs)
-
-    nov = smooth(nov,win_length=10)
-    noise = 0.02 + 0*np.random.randn(len(nov))
-    nov = nov + noise
-    nov = 20*np.log10(nov)
-
-    peaks = find_peaks(nov, height=-20, distance = 30)[0]
-
-    peaks = np.asarray(peaks) * 256
-
-    firstcut = peaks[0] - 1000
-    lastcut = peaks[-1] + int(60000/int(bpm)/1000 * 48000)
-
-    '''
-    plt.plot(x[firstcut:lastcut])
-    plt.show()
-    '''
-
-    return x[firstcut:lastcut]

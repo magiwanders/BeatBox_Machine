@@ -39,10 +39,7 @@ class S(BaseHTTPRequestHandler):
         
         bpm = data["BPM"]
         audio = data["AudioData"]
-       
-        ##PRINT THE LENGTH OF THE DATA FOR DEBUG
-        ##print(content_length)
-        
+               
         ##PASS THE DATA TO SCRIPT PROCESS
         data_to_return = data_process.process(audio, bpm)
 

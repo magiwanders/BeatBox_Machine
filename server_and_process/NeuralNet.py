@@ -1,3 +1,6 @@
+##Final predictions and extraction on the recording
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
@@ -9,15 +12,8 @@ import tensorflow as tf
 model = tf.keras.models.load_model('kick_snare_hat_classifier.hdf5')
 
 
-
+#Conversion from array of ones to array os angles values
 def convert_to_angles(divisions, clicks_hihat, clicks_kick, clicks_snare):
-
-    # print('INIZIO convert_to_angles')
-    # print(divisions)
-    # print(clicks_hihat)
-    # print(clicks_kick)
-    # print(clicks_snare)
-
 
     step = 360/divisions
 
@@ -26,19 +22,22 @@ def convert_to_angles(divisions, clicks_hihat, clicks_kick, clicks_snare):
     for i in range(divisions):
         step_arr[i] = i*step
 
-
+    #Dot product between array and steps
     angles_hihat = np.multiply(step_arr,clicks_hihat)
     angles_kick = np.multiply(step_arr,clicks_kick)
     angles_snare = np.multiply(step_arr,clicks_snare)
 
+    #Clean array from zeros
     angles_hihat = angles_hihat[angles_hihat != 0]
     angles_kick = angles_kick[angles_kick != 0]
     angles_snare = angles_snare[angles_snare != 0]
 
+    #Round to int
     angles_hihat = np.rint(angles_hihat)
     angles_kick = np.rint(angles_kick)
     angles_snare = np.rint(angles_snare)
 
+    #Array insertion
     if clicks_hihat[0] == 1:
         angles_hihat = np.insert(angles_hihat, 0,0)
 
@@ -48,14 +47,10 @@ def convert_to_angles(divisions, clicks_hihat, clicks_kick, clicks_snare):
     if clicks_snare[0] == 1:
         angles_snare = np.insert(angles_snare, 0,0)
 
-    # print(angles_hihat)
-    # print(angles_kick)
-    # print(angles_snare)
-    # print('FINE convert_to_angles')
-
     return angles_hihat, angles_kick, angles_snare
 
 
+#Check the presence of a past insertion
 def checkKey(dict, key):
     if key in dict.keys():
         return True
@@ -63,22 +58,19 @@ def checkKey(dict, key):
         return False
 
 
+#Neural Network prediction call
 def Prediction(x, clicks, divisions):
-
-    #print('INIZIO PREDICTION')
 
     divisions = int(divisions)
 
-    # Funzione che ottiene gli indici degli 1
+    #Function to retrive ones
     indexesOfNotes = [i for i, e in enumerate(clicks) if e==1]
 
     indexesOfNotes = np.asarray(indexesOfNotes)*256
 
-    #print(len(indexesOfNotes))
-
-    #cuts = np.zeros(len(indexesOfNotes)-1)
     cuts = []
-    # Funzionw che calcola indici intermedi
+
+    #Function to calculate intermidiate indecies
     for i in range(len(indexesOfNotes)-1):
         #cuts[i] = (indexesOfNotes[i+1] - indexesOfNotes[i])/2 + indexesOfNotes[i]
         cuts.append(int((indexesOfNotes[i+1] - indexesOfNotes[i])/2 + indexesOfNotes[i]))
@@ -90,11 +82,7 @@ def Prediction(x, clicks, divisions):
     #insert the end
     cuts.append(len(clicks)*256)
 
-    #print(len((cuts)))
-
-
     # Ceate result dictionary (divisionNumber -> pred)
-
     result_dict = {}
     for i in range(len(indexesOfNotes)):
         to_pred = x[cuts[i]:cuts[i+1]]
@@ -107,8 +95,6 @@ def Prediction(x, clicks, divisions):
             print('Snare')
 
         result_dict[np.rint(indexesOfNotes[i]/len(x)*divisions)] = pred
-
-    #print(result_dict)
 
     # Build the divisions long istheres
     isthere_hihat = np.zeros(divisions)
@@ -130,7 +116,6 @@ def Prediction(x, clicks, divisions):
     #print('FINE PREDICTION')
 
     return convert_to_angles(divisions, isthere_hihat, isthere_kick, isthere_snare)
-
 
 
 def SinglePrediction(x):

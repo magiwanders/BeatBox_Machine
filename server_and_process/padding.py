@@ -1,5 +1,9 @@
+#Padding the extracted recording 
+
+
 from pydub import AudioSegment
 from pathlib import Path
+
 
 dataset_path = Path('./samples/snare_to_pad')
 filelist = list(dataset_path.rglob('*wav'))
