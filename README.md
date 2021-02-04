@@ -9,7 +9,9 @@ Created by:
 
 ## About The Project
 
-Presentation link: https://drive.google.com/file/d/1AeHddVSj2ac9mk5Ok0uodCFo_lKkN1NA/view?usp=sharing
+* ACTAM presentation link: https://drive.google.com/file/d/1AeHddVSj2ac9mk5Ok0uodCFo_lKkN1NA/view?usp=sharing
+
+* CMRM presentation link: https://drive.google.com/file/d/1gUL5w6oSYpbW3DTPRmrFYSiZNBoVFNkf/view?usp=sharing
 
 The goal of the project is to create a proof of concept to convert the rhythm produced by the human beatbox into a rhythmic visual system and a playable rhythmic clock. The aim is to support those who want quickly sketch a rhythmic idea to be used later in their projects.
 
