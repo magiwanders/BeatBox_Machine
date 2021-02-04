@@ -52,6 +52,10 @@ The goal of the project is to create a proof of concept to convert the rhythm pr
 
 * Stop the recording by clicking the "Clock Button", a new **"Rhythm Clock"** will be created automatically.
 
+* Example of polyrhytmic creation: in order to create a 5 over 4 rhythm a clock of 4 and a clock of 5 should be created. Press the the left bottom button of the clock of 4 and play simultaneusly the two clocks.
+
+* Note: you don't need to be precise to the global BPM in order to create the specific rhythm. 5 drum sounds sucessively will produce a clock of 5 divisions. 
+
 ![Alt Text](screenshots/clock_creation.gif)
 
 #### Further Usage
